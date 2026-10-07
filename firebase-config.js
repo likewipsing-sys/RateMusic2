@@ -19,3 +19,5 @@ window.FIREBASE_CONFIG = {
   messagingSenderId: "128132093223",
   appId: "1:128132093223:web:8dfd96436a9d77a32f8502"
 };
+
+window.RECAPTCHA_SITE_KEY = "6LdwneMtAAAAANwZqIgnejy_xA8BCUIyELcLGVrV";
