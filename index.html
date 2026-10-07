@@ -1,0 +1,1437 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>내 레이팅</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="내 레이팅">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#17162B">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="firebase-config.js"></script>
+<style>
+:root{
+  --bg:#F2F1F8; --surface:#FFFFFF; --ink:#17162B; --muted:#68677F; --line:#BDB9D1;
+  --amber:#FFB020; --on-amber:#17162B; --danger:#C62F4B; --chip:#E8E6F3;
+  --t3num:#F2C94C;
+  --f-body:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif;
+  --f-num:'Bricolage Grotesque','IBM Plex Sans KR',system-ui,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E0D1B; --surface:#191830; --ink:#F1F0FA; --muted:#9C9BB6; --line:#4A4872;
+    --danger:#FF6B86; --chip:#232241; --t3num:#B7791F;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E0D1B; --surface:#191830; --ink:#F1F0FA; --muted:#9C9BB6; --line:#4A4872;
+  --danger:#FF6B86; --chip:#232241; --t3num:#B7791F;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--f-body);-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+[hidden]{display:none!important}
+
+#app{max-width:560px;margin:0 auto;padding:0 16px 130px}
+
+/* header */
+body::before{content:'';position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:60;pointer-events:none}
+#top{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1.5px solid transparent;transition:border-color .15s;display:flex;align-items:center;gap:8px;padding:14px 0 10px;min-height:64px}
+#top.scrolled{border-bottom-color:var(--line)}
+#top h1{margin:0;flex:1;font:800 28px/1.15 var(--f-num);letter-spacing:-.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ib{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:var(--ink)}
+.ib{position:relative}
+.ib:active{background:var(--chip)}
+.sdot{position:absolute;top:8px;right:8px;width:11px;height:11px;border-radius:50%;border:2px solid var(--bg);background:var(--muted)}
+.sdot.s-idle{background:#34B36B}.sdot.s-saving{background:#F0B13A}.sdot.s-error{background:#E0445A}.sdot.s-off{background:var(--muted)}
+.accstat{display:flex;align-items:center;gap:8px;margin:0 0 4px}
+.accstat i{width:10px;height:10px;border-radius:50%;background:var(--muted);flex:none}
+.accstat i.s-idle{background:#34B36B}.accstat i.s-saving{background:#F0B13A}.accstat i.s-error{background:#E0445A}
+.ib svg,.tab svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#top .ib.back{margin-left:-10px}
+
+/* chips + segmented */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 12px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;padding:8px 16px;border-radius:999px;background:var(--chip);font-weight:500;font-size:15px;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);background:var(--chip);border-radius:12px;padding:4px;margin-bottom:8px}
+.seg button{padding:9px 0;border-radius:9px;font-weight:500;font-size:15px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.seg.two{grid-template-columns:1fr 1fr}
+.sqrow{display:flex;gap:8px}
+.sqrow .in-t{flex:1;min-width:0}
+.sqrow .btn{padding:0 18px}
+.cand{display:block;width:100%;text-align:left;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--line);margin-bottom:8px}
+.cand:active{background:var(--chip)}
+.cand .t{display:block;font-weight:700}
+.cand .s{display:block;font-size:14px;color:var(--muted)}
+.stat{margin:0 0 4px;color:var(--muted);font-size:14px}
+
+/* rows */
+.row{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;width:100%;text-align:left;padding:12px 0;border-bottom:1.5px solid var(--line)}
+.row.nr{grid-template-columns:1fr auto}
+.row:active{opacity:.6}
+.rowx{display:flex;align-items:center;border-bottom:1.5px solid var(--line)}
+.rowx .row{flex:1;min-width:0;border-bottom:0}
+.grip,.gripsp{flex:none;width:38px;height:56px;display:grid;place-items:center}
+.grip{color:var(--muted);touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.rowx.dragging{background:var(--surface);box-shadow:0 8px 22px rgba(0,0,0,.28);border-radius:12px;position:relative;z-index:5;border-bottom-color:transparent}
+.rowx.dragging .grip{cursor:grabbing;color:var(--ink)}
+.rk{font:800 22px/1 var(--f-num);color:var(--muted);text-align:center;letter-spacing:-.03em}
+.rk.top{color:var(--ink)}
+.mt{display:flex;flex-direction:column;min-width:0}
+.mt .t{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mt .a{font-size:14px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mt .g{font-size:13px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mt .g em{font-style:normal;font-weight:700;margin-right:6px;color:var(--ink);opacity:.75}
+.sc{width:48px;height:48px;border-radius:50%;background:var(--amber);color:var(--on-amber);display:grid;place-items:center;font:800 17px/1 var(--f-num);letter-spacing:-.03em;box-shadow:inset 0 0 0 4px var(--ring,rgba(23,22,43,.1)),0 0 0 1px var(--edge,transparent)}
+.grp{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;width:100%;text-align:left;padding:12px 0;border-bottom:1.5px solid var(--line)}
+.grp:active{opacity:.6}
+.grp .n{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grp .s{font-size:14px;color:var(--muted)}
+.sc.sm{width:44px;height:44px;font-size:15px}
+
+/* empty */
+.empty{text-align:center;padding:56px 16px;color:var(--muted)}
+.empty .rec{width:96px;height:96px;margin:0 auto 18px;display:block}
+.empty h2{margin:0 0 6px;color:var(--ink);font-size:19px}
+.empty p{margin:0 0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 22px;border-radius:12px;background:var(--ink);color:var(--bg);font-weight:700}
+.btn.ghost{background:var(--chip);color:var(--ink)}
+.btn.danger{background:var(--danger);color:#fff}
+.btn.block{width:100%}
+.label-s{margin:18px 0 2px;font-size:14px;font-weight:700;color:var(--muted)}
+
+/* search */
+.q{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);margin-bottom:6px}
+.q:focus{outline:2px solid var(--amber);outline-offset:0;border-color:transparent}
+
+/* tab bar */
+#tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1.5px solid var(--line);padding:6px 8px calc(env(safe-area-inset-bottom,0px) + 6px)}
+#tabs .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);align-items:end}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0 2px;font-size:12px;color:var(--muted);font-weight:500;min-height:52px;justify-content:flex-end}
+.tab[aria-current="page"]{color:var(--ink);font-weight:700}
+.tab.add{color:var(--ink);font-weight:700}
+.tab.add .plus{width:54px;height:54px;border-radius:50%;background:var(--amber);color:var(--on-amber);display:grid;place-items:center;margin-top:-26px;box-shadow:0 0 0 5px var(--surface),inset 0 0 0 5px rgba(23,22,43,.1)}
+.tab.add .plus svg{stroke-width:2.8}
+
+/* overlay */
+#overlay{position:fixed;inset:0;z-index:50;background:var(--bg);overflow-y:auto;overscroll-behavior:contain;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:rise .22s ease-out}
+@keyframes rise{from{transform:translateY(28px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion: reduce){#overlay{animation:none}}
+.sheet{max-width:560px;margin:0 auto;padding:0 16px 32px}
+.sheet-top{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:10px 0;min-height:60px}
+.sheet-top h2{margin:0;font-size:17px}
+.sheet-top .ib{margin:0 -10px}
+.textbtn{padding:10px 4px;font-weight:700}
+
+/* detail */
+.d-title{margin:0;font-size:26px;line-height:1.25;letter-spacing:-.02em;font-weight:700}
+.d-artist{margin:2px 0 0;font-size:18px;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+.tag{padding:4px 12px;border-radius:999px;background:var(--chip);font-size:14px}
+.d-score{display:flex;align-items:center;gap:18px;margin:22px 0}
+.d-score .disc{flex:none;width:112px;height:112px;border-radius:50%;background:var(--amber);color:var(--on-amber);display:grid;place-items:center;font:800 40px/1 var(--f-num);letter-spacing:-.04em;box-shadow:inset 0 0 0 8px var(--ring,rgba(23,22,43,.1)),inset 0 0 0 9px var(--ring,rgba(23,22,43,.12)),0 0 0 1px var(--edge,transparent)}
+.d-score .rk2{font-size:15px;color:var(--muted)}
+.d-score .rk2 b{display:block;color:var(--ink);font-size:20px}
+.note{white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 6px}
+.note.none{color:var(--muted)}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+
+/* form */
+.field{margin:0 0 16px}
+.field>label,.field>.lb{display:block;font-weight:700;font-size:14px;margin:0 0 6px;color:var(--muted)}
+.in-t{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface)}
+.in-t:focus{outline:2px solid var(--amber);outline-offset:0;border-color:transparent}
+textarea.in-t{min-height:110px;resize:vertical;line-height:1.55}
+.scorebox{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 14px 16px}
+.scorerow{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.scorenum{flex:none;width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font:800 34px/1 var(--f-num);letter-spacing:-.04em;background:var(--amber);color:var(--on-amber);box-shadow:inset 0 0 0 6px var(--ring,rgba(23,22,43,.1)),0 0 0 1px var(--edge,transparent)}
+.step{width:48px;height:48px;border-radius:50%;background:var(--chip);font:700 22px/1 var(--f-body);display:grid;place-items:center}
+.step:active{background:var(--amber);color:var(--on-amber)}
+input[type=range]{width:100%;margin:12px 0 0;accent-color:var(--amber);height:32px}
+.scale{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.mini{padding:9px 14px;border-radius:10px;background:var(--chip);font-weight:500;font-size:15px;display:inline-block}
+.savebar{position:sticky;bottom:0;background:var(--bg);padding:12px 0 6px;margin-top:8px}
+.only-song[hidden]{display:none}
+.player{margin:18px 0 0}
+.pframe{display:block;width:100%;border:0;border-radius:12px;overflow:hidden;background:transparent}
+.plinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.plinks a{text-decoration:none;color:var(--ink)}
+.dup{margin-top:8px;padding:10px 12px;border-radius:10px;background:rgba(224,68,90,.12);color:var(--danger);font-size:14px;font-weight:500}
+.linkbtn{font-weight:700;text-decoration:underline;color:inherit;padding:0 2px}
+.t3{background:var(--ink);color:var(--bg);border-radius:18px;padding:18px 16px 6px;margin:2px 0 18px}
+.t3 h2{margin:0;font:800 24px/1.1 var(--f-num);letter-spacing:-.02em}
+.t3 .sub{margin:3px 0 10px;font-size:13px;opacity:.7}
+.t3row{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;padding:13px 0;box-shadow:inset 0 1.5px 0 rgba(140,140,160,.65)}
+.t3row:active{opacity:.65}
+.t3n{flex:none;width:30px;font:800 32px/1 var(--f-num);color:var(--t3num)}
+.t3m{min-width:0;flex:1}
+.t3m span{display:block}
+.t3t{font-weight:700;font-size:17px;line-height:1.3}
+.t3a{font-size:14px;opacity:.78}
+.t3note{font-size:14px;margin-top:5px;opacity:.92;white-space:pre-wrap}
+.t3empty{opacity:.6}
+.combo{position:relative}
+.combo .in-t{padding-right:46px}
+.combo-btn{position:absolute;right:0;top:0;bottom:0;width:46px;display:grid;place-items:center;color:var(--muted)}
+.combo-list{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:30;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 28px rgba(0,0,0,.22);max-height:236px;overflow-y:auto;overscroll-behavior:contain}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+.opt:last-child{border-bottom:0}
+.opt:active{background:var(--chip)}
+.opt .c{font-size:13px;color:var(--muted);flex:none}
+.hint{font-size:13px;color:var(--muted);margin:6px 0 0}
+textarea.bk{font-size:13px;min-height:150px;font-family:ui-monospace,Menlo,monospace}
+
+#toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 96px);transform:translate(-50%,10px);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:999px;font-size:15px;font-weight:500;z-index:80;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:88vw;text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div id="app">
+  <header id="top"></header>
+  <main id="main"></main>
+</div>
+<nav id="tabs" aria-label="메뉴"><div class="in" id="tabsIn"></div></nav>
+<div id="overlay" hidden></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+
+/* ---------- 설정 / 상태 ---------- */
+var KEY='myrating.v1';
+var TYPES=[['album','앨범'],['ep','EP'],['single','싱글'],['song','노래']];
+var TL={album:'앨범',ep:'EP',single:'싱글',song:'노래'};
+var items=[];
+var ui={tab:'rank',type:'all',by:'artist',group:null,groupName:'',q:''};
+var f=null;            // 작성 중인 폼 데이터
+var overlayMode=null;  // 'detail' | 'form' | 'backup'
+var openId=null;
+var top3=[null,null,null];
+var cloud={ready:false,user:null,db:null,auth:null,ref:null,unsub:null,state:'off',at:0,timer:null,lastRev:null,err:'',conflict:null};
+var fmode='manual',cands=[],searching=false,stype='album',lastInfo='';
+var VER='v6';
+
+function load(){
+  try{
+    var r=localStorage.getItem(KEY);
+    if(r){var d=JSON.parse(r); if(d&&Array.isArray(d.top3))top3=sanitizeTop3(d.top3); if(d&&Array.isArray(d.items)){items=d.items;var had=false;items.forEach(function(it){if('cover' in it){delete it.cover;had=true;}});if(had)save();}}
+  }catch(e){}
+}
+function writeLocal(){localStorage.setItem(KEY,JSON.stringify({v:1,items:items,top3:top3}));}
+function save(){
+  try{
+    writeLocal();
+    localStorage.setItem('myrating.dirty','1');
+    localStorage.removeItem('myrating.seedOnly');
+  }catch(e){toast('저장하지 못했어요. 브라우저 저장 공간을 확인해 주세요.');return false;}
+  schedulePush();
+  return true;
+}
+
+/* ---------- 유틸 ---------- */
+function $(s,r){return (r||document).querySelector(s);}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function fmt(n){return (Math.round(Number(n)*10)/10).toFixed(1);}
+/* 점수에 따라 색이 0.1점 단위로 이어서 변해요.
+   차가운 남보라에서 시작해 청록, 연두, 노랑, 주황을 지나 빨강으로 오르고, 9점대에서 점점 어두워져 10점은 검정이에요. */
+var COLOR_STOPS=[
+  [0,[75,63,143]],[2,[90,107,214]],[4,[63,167,201]],[5,[79,191,154]],[6,[167,207,91]],
+  [7,[242,201,76]],[7.6,[242,153,74]],[8.3,[240,100,74]],[9,[224,47,68]],[9.5,[142,27,48]],[10,[14,13,20]]
+];
+function scoreColor(sc){
+  var v=Math.max(0,Math.min(10,Number(sc)||0)),a=COLOR_STOPS[0],b=COLOR_STOPS[COLOR_STOPS.length-1];
+  for(var i=1;i<COLOR_STOPS.length;i++){
+    if(v<=COLOR_STOPS[i][0]){a=COLOR_STOPS[i-1];b=COLOR_STOPS[i];break;}
+  }
+  var t=b[0]===a[0]?0:(v-a[0])/(b[0]-a[0]);
+  var rgb=[0,1,2].map(function(k){return Math.round(a[1][k]+(b[1][k]-a[1][k])*t);});
+  var lin=rgb.map(function(x){x/=255;return x<=0.03928?x/12.92:Math.pow((x+0.055)/1.055,2.4);});
+  var lum=0.2126*lin[0]+0.7152*lin[1]+0.0722*lin[2];
+  return {bg:'rgb('+rgb.join(',')+')',fg:lum>0.28?'#17162B':'#FFFFFF',dark:lum<=0.2};
+}
+function scStyle(sc){
+  var c=scoreColor(sc);
+  return 'background:'+c.bg+';color:'+c.fg+(c.dark?';--ring:rgba(255,255,255,.16);--edge:rgba(255,255,255,.28)':';--ring:rgba(23,22,43,.1);--edge:transparent');
+}
+function uid(){return 'r'+Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function norm(s){return String(s||'').trim().toLowerCase();}
+var toastT;
+function toast(msg){var t=$('#toast');t.textContent=msg;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on');},2200);}
+function avg(list){if(!list.length)return 0;return list.reduce(function(a,b){return a+Number(b.score);},0)/list.length;}
+function ord(it){return it.order!=null?Number(it.order):1e13+(it.createdAt||0);}
+function sortItems(list){return list.slice().sort(function(a,b){return (b.score-a.score)||(ord(a)-ord(b))||((a.createdAt||0)-(b.createdAt||0));});}
+function ranked(list){
+  return sortItems(list).map(function(it,i){return {it:it,rank:i+1};});
+}
+function uniq(field){
+  var seen={},out=[];
+  items.forEach(function(it){var v=(it[field]||'').trim();if(v&&!seen[norm(v)]){seen[norm(v)]=1;out.push(v);}});
+  return out.sort();
+}
+
+/* ---------- 중복 확인 ---------- */
+function squash(s){return norm(s).replace(/[\s'’"“”.,!?:;\-–—()\[\]·\/&]/g,'');}
+function dupBase(it){return squash(it.title)+'|'+squash(it.artist);}
+function dupKey(it){return dupBase(it)+'|'+it.type;}
+function findDup(rec,exceptId){
+  var k=dupKey(rec);
+  return items.find(function(x){return x.id!==exceptId&&dupKey(x)===k;})||null;
+}
+function findTop3Dup(title,artist,exceptSlot){
+  var b=dupBase({title:title,artist:artist});
+  for(var i=0;i<3;i++){if(i!==exceptSlot&&top3[i]&&dupBase(top3[i])===b)return i;}
+  return -1;
+}
+function dedupeItems(list){
+  var map={},order=[];
+  list.forEach(function(it){
+    var k=dupKey(it),cur=map[k];
+    if(!cur){map[k]=it;order.push(k);}
+    else if((it.updatedAt||0)>(cur.updatedAt||0))map[k]=it;
+  });
+  return order.map(function(k){return map[k];});
+}
+function sanitizeTop3(arr){
+  var out=[null,null,null];
+  if(Array.isArray(arr)){
+    for(var i=0;i<3;i++){
+      var x=arr[i];
+      if(x&&typeof x==='object'&&x.title)out[i]={title:String(x.title),artist:String(x.artist||''),genre:String(x.genre||''),note:String(x.note||''),updatedAt:Number(x.updatedAt)||Date.now()};
+    }
+  }
+  return out;
+}
+function hasTop3(){return top3.some(function(t){return !!t;});}
+function mergeTop3(a,b){
+  var out=[null,null,null];
+  for(var i=0;i<3;i++){
+    var x=a[i],y=b[i];
+    out[i]=!x?y:(!y?x:((y.updatedAt||0)>(x.updatedAt||0)?y:x));
+  }
+  return out;
+}
+function checkDup(){
+  var w=$('#dupWarn');if(!w||!f)return;
+  if(!f.title||!f.artist||!f.title.trim()||!f.artist.trim()){w.hidden=true;return;}
+  var d=findDup({title:f.title,artist:f.artist,type:f.type},f.id);
+  if(d){
+    w.innerHTML='이미 레이팅한 '+TL[d.type]+'이에요 ('+fmt(d.score)+'점) <button type="button" class="linkbtn" data-action="opendup" data-id="'+d.id+'">보기</button>';
+    w.hidden=false;return;
+  }
+  var t=findTop3Dup(f.title,f.artist,-1);
+  if(t>-1){w.textContent='TOP 3의 '+(t+1)+'번 자리에 있는 앨범이에요.';w.hidden=false;return;}
+  w.hidden=true;
+}
+
+/* ---------- 아이콘 ---------- */
+function svg(inner,extra){return '<svg viewBox="0 0 24 24" aria-hidden="true"'+(extra||'')+'>'+inner+'</svg>';}
+var IC={
+  rank:svg('<path d="M5 20v-7M12 20V4M19 20v-11"/>'),
+  browse:svg('<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>'),
+  search:svg('<circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/>'),
+  plus:svg('<path d="M12 5v14M5 12h14"/>'),
+  back:svg('<path d="M15 5l-7 7 7 7"/>'),
+  backup:svg('<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>'),
+  user:svg('<circle cx="12" cy="8" r="4"/><path d="M4.5 20c1.4-4 4.2-6 7.5-6s6.100 2 7.5 6"/>'),
+  close:svg('<path d="M6 6l12 12M18 6L6 18"/>')
+};
+var RECORD='<svg class="rec" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="46" fill="#17162B"/><circle cx="48" cy="48" r="38" fill="none" stroke="#2f2d5c" stroke-width="1.5"/><circle cx="48" cy="48" r="31" fill="none" stroke="#2f2d5c" stroke-width="1.5"/><circle cx="48" cy="48" r="24" fill="#FFB020"/><path d="M48 36l3.5 7.4 8 1-5.9 5.6 1.5 8L48 53.9l-7.1 4.1 1.5-8-5.9-5.6 8-1z" fill="#17162B"/></svg>';
+
+/* ---------- 목록 행 ---------- */
+function row(it,rank){
+  var rk=rank!=null?'<span class="rk'+(rank<=3?' top':'')+'">'+rank+'</span>':'';
+  return '<button class="row'+(rank==null?' nr':'')+'" data-action="open" data-id="'+it.id+'">'+rk+
+    '<span class="mt"><span class="t">'+esc(it.title)+'</span><span class="a">'+esc(it.artist)+'</span>'+
+    '<span class="g"><em>'+TL[it.type]+'</em>'+esc(it.genre||'')+'</span></span>'+
+    '<span class="sc" style="'+scStyle(it.score)+'" aria-label="'+fmt(it.score)+'점">'+fmt(it.score)+'</span></button>';
+}
+var CHEV='<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+var GRIP='<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.8"/><circle cx="15" cy="6" r="1.8"/><circle cx="9" cy="12" r="1.8"/><circle cx="15" cy="12" r="1.8"/><circle cx="9" cy="18" r="1.8"/><circle cx="15" cy="18" r="1.8"/></svg>';
+function rankRow(it,rank,tie){
+  return '<div class="rowx" data-id="'+it.id+'" data-score="'+it.score+'">'+row(it,rank)+
+    (tie?'<span class="grip" role="button" aria-label="순서 바꾸기" title="끌어서 순서 바꾸기">'+GRIP+'</span>':'<span class="gripsp"></span>')+'</div>';
+}
+function emptyAll(){
+  return '<div class="empty">'+RECORD+'<h2>아직 레이팅이 없어요</h2><p>들은 앨범이나 노래에 점수를 남겨 보세요.</p><button class="btn" data-action="new">첫 레이팅 만들기</button></div>';
+}
+
+/* ---------- 화면: 순위 ---------- */
+function viewRank(){
+  var t3=top3HTML();
+  if(!items.length) return t3+emptyAll();
+  var chips=[['all','전체']].concat(TYPES);
+  var list=ui.type==='all'?items:items.filter(function(i){return i.type===ui.type;});
+  var h=t3+'<div class="chips" role="group" aria-label="종류 필터">'+chips.map(function(c){
+    return '<button class="chip" data-action="type" data-v="'+c[0]+'" aria-pressed="'+(ui.type===c[0])+'">'+c[1]+'</button>';
+  }).join('')+'</div>';
+  if(!list.length){
+    return h+'<div class="empty"><p>이 종류의 레이팅이 아직 없어요.</p><button class="btn ghost" data-action="new">새 레이팅 만들기</button></div>';
+  }
+  h+='<p class="stat">'+list.length+'개, 평균 '+fmt(avg(list))+'점</p>';
+  var cnt={};list.forEach(function(i){cnt[i.score]=(cnt[i.score]||0)+1;});
+  var hasTie=Object.keys(cnt).some(function(k){return cnt[k]>1;});
+  if(hasTie)h+='<p class="hint" style="margin:0 0 4px">같은 점수끼리는 오른쪽 손잡이를 끌어서 순위를 바꿀 수 있어요.</p>';
+  h+=ranked(list).map(function(r){return rankRow(r.it,r.rank,cnt[r.it.score]>1);}).join('');
+  return h;
+}
+
+/* ---------- 화면: 둘러보기 ---------- */
+function splitGenres(str){
+  var seen={},out=[];
+  String(str||'').split('/').forEach(function(p){
+    var t=p.trim();
+    if(t&&!seen[norm(t)]){seen[norm(t)]=1;out.push(t);}
+  });
+  return out;
+}
+// 한 항목이 속하는 분류들. 장르는 "/"로 나눠서 각각의 장르에 모두 들어가요.
+function groupsOf(it,by){
+  if(by==='artist')return [{key:norm(it.artist),name:(it.artist||'').trim()}];
+  if(by==='genre'){
+    var g=splitGenres(it.genre);
+    return g.length?g.map(function(x){return {key:norm(x),name:x};}):[{key:'',name:'장르 없음'}];
+  }
+  return [{key:it.type,name:TL[it.type]}];
+}
+function inGroup(it,by,key){
+  return groupsOf(it,by).some(function(g){return g.key===key;});
+}
+function viewBrowse(){
+  if(!items.length) return emptyAll();
+  if(ui.group!==null){
+    var list=items.filter(function(it){return inGroup(it,ui.by,ui.group);});
+    if(!list.length){ui.group=null;return viewBrowse();}
+    return '<p class="stat">'+list.length+'개, 평균 '+fmt(avg(list))+'점</p>'+
+      ranked(list).map(function(r){return row(r.it,r.rank);}).join('');
+  }
+  var segs=[['artist','아티스트'],['genre','장르'],['type','종류']];
+  var h='<div class="seg" role="group" aria-label="분류 기준">'+segs.map(function(s){
+    return '<button data-action="by" data-v="'+s[0]+'" aria-pressed="'+(ui.by===s[0])+'">'+s[1]+'</button>';
+  }).join('')+'</div>';
+  var map={},order=[];
+  items.forEach(function(it){
+    groupsOf(it,ui.by).forEach(function(g){
+      if(!map[g.key]){map[g.key]={key:g.key,name:g.name,list:[]};order.push(g.key);}
+      map[g.key].list.push(it);
+    });
+  });
+  var groups=order.map(function(k){return map[k];}).sort(function(a,b){
+    return (b.list.length-a.list.length)||a.name.localeCompare(b.name,'ko');
+  });
+  h+=groups.map(function(g){
+    return '<button class="grp" data-action="group" data-key="'+esc(g.key)+'" data-name="'+esc(g.name)+'">'+
+      '<span><span class="n" style="display:block">'+esc(g.name)+'</span><span class="s">'+g.list.length+'개</span></span>'+
+      '<span class="sc sm" style="'+scStyle(avg(g.list))+'" aria-label="평균 '+fmt(avg(g.list))+'점">'+fmt(avg(g.list))+'</span></button>';
+  }).join('');
+  return h;
+}
+
+/* ---------- 화면: 검색 ---------- */
+function searchResults(){
+  var q=norm(ui.q);
+  if(!q){
+    var recent=items.slice().sort(function(a,b){return (b.createdAt||0)-(a.createdAt||0);}).slice(0,5);
+    if(!recent.length) return emptyAll();
+    return '<p class="label-s">최근 레이팅</p>'+recent.map(function(it){return row(it,null);}).join('');
+  }
+  var toks=q.split(/\s+/);
+  var found=items.filter(function(it){
+    var hay=norm([it.title,it.artist,it.genre,it.album,it.note,TL[it.type]].join(' '));
+    return toks.every(function(t){return hay.indexOf(t)>-1;});
+  });
+  if(!found.length) return '<div class="empty"><p>“'+esc(ui.q.trim())+'”에 맞는 레이팅이 없어요.<br>제목이나 아티스트 이름 일부만 입력해 보세요.</p><button class="btn ghost" data-action="new">새 레이팅 만들기</button></div>';
+  return '<p class="stat">'+found.length+'개를 찾았어요</p>'+sortItems(found).map(function(it){return row(it,null);}).join('');
+}
+function viewSearch(){
+  return '<input id="q" class="q" type="search" placeholder="제목, 아티스트, 장르, 메모로 찾기" value="'+esc(ui.q)+'" autocomplete="off" enterkeyhint="search"><div id="results">'+searchResults()+'</div>';
+}
+
+/* ---------- 메인 렌더 ---------- */
+function render(){
+  var top=$('#top'),main=$('#main');
+  var title='순위',left='',right='';
+  if(ui.tab==='rank'){right='<button class="ib" data-action="account" aria-label="계정과 동기화">'+IC.user+'<span class="sdot" id="sdot" hidden></span></button><button class="ib" data-action="backup" aria-label="백업과 복원">'+IC.backup+'</button>';}
+  if(ui.tab==='browse'){
+    title='둘러보기';
+    if(ui.group!==null){title=ui.groupName;left='<button class="ib back" data-action="back" aria-label="뒤로">'+IC.back+'</button>';}
+  }
+  if(ui.tab==='search') title='검색';
+  top.innerHTML=left+'<h1>'+esc(title)+'</h1>'+right;
+  updateDot();
+  main.innerHTML=ui.tab==='rank'?viewRank():ui.tab==='browse'?viewBrowse():viewSearch();
+  var t=[['rank','순위',IC.rank],['browse','둘러보기',IC.browse],['__new','',''],['search','검색',IC.search]];
+  $('#tabsIn').innerHTML=
+    '<button class="tab" data-action="tab" data-v="rank"'+(ui.tab==='rank'?' aria-current="page"':'')+'>'+IC.rank+'순위</button>'+
+    '<button class="tab" data-action="tab" data-v="browse"'+(ui.tab==='browse'?' aria-current="page"':'')+'>'+IC.browse+'둘러보기</button>'+
+    '<button class="tab add" data-action="new"><span class="plus">'+IC.plus+'</span>새 레이팅</button>'+
+    '<button class="tab" data-action="tab" data-v="search"'+(ui.tab==='search'?' aria-current="page"':'')+'>'+IC.search+'검색</button>';
+}
+
+/* ---------- 오버레이 공통 ---------- */
+function showOverlay(html,mode){
+  var o=$('#overlay');
+  o.innerHTML=html;o.hidden=false;o.scrollTop=0;overlayMode=mode;
+  document.body.style.overflow='hidden';
+}
+function closeOverlay(){
+  var o=$('#overlay');o.hidden=true;o.innerHTML='';overlayMode=null;f=null;
+  document.body.style.overflow='';
+}
+
+/* ---------- 상세 ---------- */
+function openDetail(id){
+  var it=items.find(function(x){return x.id===id;});
+  if(!it) return;
+  openId=id;
+  var same=items.filter(function(x){return x.type===it.type;});
+  var r=ranked(same).find(function(x){return x.it.id===id;});
+  var tags='<span class="tag">'+TL[it.type]+'</span>';
+  if(it.genre) tags+='<span class="tag">'+esc(it.genre)+'</span>';
+  if(it.type==='song'&&it.album) tags+='<span class="tag">수록: '+esc(it.album)+'</span>';
+  var d=new Date(it.createdAt||Date.now());
+  var date=d.getFullYear()+'년 '+(d.getMonth()+1)+'월 '+d.getDate()+'일';
+  showOverlay(
+    '<div class="sheet"><div class="sheet-top"><button class="ib" data-action="close" aria-label="닫기">'+IC.close+'</button><span class="stat" style="margin:0">'+date+'</span></div>'+
+    '<h2 class="d-title">'+esc(it.title)+'</h2><p class="d-artist">'+esc(it.artist)+'</p>'+
+    '<div class="tags">'+tags+'</div>'+
+    '<div id="player" class="player"></div>'+
+    '<div class="d-score"><div class="disc" style="'+scStyle(it.score)+'" aria-label="'+fmt(it.score)+'점">'+fmt(it.score)+'</div>'+
+    '<div class="rk2">'+TL[it.type]+' 중<b>'+r.rank+'위 / '+same.length+'개</b></div></div>'+
+    (it.note&&it.note.trim()?'<p class="note">'+esc(it.note)+'</p>':'<p class="note none">남긴 메모가 없어요.</p>')+
+    '<div class="actions"><button class="btn ghost" data-action="edit" data-id="'+it.id+'">수정</button>'+
+    '<button class="btn ghost" data-action="del" data-id="'+it.id+'" id="delBtn">삭제</button></div></div>',
+    'detail');
+  setupPlayer(it);
+}
+
+/* ---------- 앱 안에서 재생 (Apple Music / Spotify 플레이어) ---------- */
+var playTried={};
+function sanitizePlay(p){
+  if(!p||typeof p!=='object')return null;
+  var src=p.src==='sp'?'sp':(p.src==='am'?'am':null);
+  if(!src)return null;
+  var path=String(p.path||'');
+  if(!/^(album|song|track)\/[A-Za-z0-9]+(\?i=\d+)?$/.test(path))return null;
+  var cc=String(p.cc||'kr').toLowerCase();
+  if(!/^[a-z]{2}$/.test(cc))cc='kr';
+  var out={src:src,cc:cc,path:path};
+  if(p.by==='ai')out.by='ai';
+  return out;
+}
+function parsePlayLink(u){
+  u=String(u||'').trim();
+  var m=u.match(/music\.apple\.com\/([a-z]{2})\/(album|song)\/(?:[^\/?#]+\/)?(\d+)(?:[^?#]*)?(?:\?[^#]*?\bi=(\d+))?/i);
+  if(m)return sanitizePlay({src:'am',cc:m[1],path:m[2].toLowerCase()+'/'+m[3]+(m[2].toLowerCase()==='album'&&m[4]?'?i='+m[4]:'')});
+  m=u.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(album|track)\/([A-Za-z0-9]+)/i);
+  if(m)return sanitizePlay({src:'sp',path:m[1].toLowerCase()+'/'+m[2]});
+  return null;
+}
+function playerFrame(p,type){
+  var src,h;
+  if(p.src==='sp'){
+    src='https://open.spotify.com/embed/'+p.path;
+    h=p.path.indexOf('track/')===0?152:352;
+  }else{
+    src='https://embed.music.apple.com/'+p.cc+'/'+p.path;
+    h=(p.path.indexOf('song/')===0||p.path.indexOf('?i=')>-1)?175:(type==='single'?260:450);
+  }
+  return '<iframe class="pframe" src="'+esc(src)+'" height="'+h+'" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" title="음악 플레이어"></iframe>';
+}
+function linkForm(it){
+  var q=encodeURIComponent(it.title+' '+it.artist);
+  return '<div class="sqrow" style="margin-top:10px"><input id="plinkIn" class="in-t" placeholder="Apple Music 또는 Spotify 링크" autocomplete="off" inputmode="url" autocapitalize="none"><button type="button" class="btn" data-action="plinksave" data-id="'+it.id+'">저장</button></div>'+
+    '<div class="plinks"><a class="mini" href="https://music.apple.com/kr/search?term='+q+'" target="_blank" rel="noopener">Apple Music에서 찾기</a><a class="mini" href="https://open.spotify.com/search/'+q+'" target="_blank" rel="noopener">Spotify에서 찾기</a></div>'+
+    '<p class="hint">찾은 앨범 화면의 공유 버튼에서 링크를 복사해 붙여넣으면 돼요.</p>';
+}
+function renderPlayer(it,state){
+  var box=$('#player');if(!box||openId!==it.id)return;
+  var h='';
+  if(it.play){
+    h=playerFrame(it.play,it.type);
+    if(state==='edit')h+=linkForm(it)+'<p style="margin:8px 0 0"><button type="button" class="mini" data-action="plinkdel" data-id="'+it.id+'">재생 링크 지우고 다시 찾기</button></p>';
+    else h+='<p class="hint" style="margin:6px 0 0">'+(it.play.by==='ai'?'AI가 찾은 앨범이에요. ':'')+'재생이 안 되거나 다른 앨범이면 <button type="button" class="linkbtn" data-action="plink" data-id="'+it.id+'">링크 바꾸기</button></p>';
+  }else if(state==='loading'){
+    h='<p class="hint">재생할 앨범을 찾는 중…</p>';
+  }else if(state==='ai'){
+    h='<p class="hint">AI가 앨범을 찾는 중…</p>';
+  }else{
+    h='<p class="hint" style="margin:0">재생할 앨범을 자동으로 찾지 못했어요. Apple Music이나 Spotify 링크를 붙여넣어 주세요.</p>'+
+      (aiErr[it.id]?'<p class="hint" style="color:var(--danger)">'+esc(aiErr[it.id])+'</p>':'')+
+      (cloudEnabled()?'<p style="margin:10px 0 0"><button type="button" class="mini" data-action="airetry" data-id="'+it.id+'">AI로 다시 찾기</button></p>':'')+
+      linkForm(it);
+  }
+  box.innerHTML=h;
+}
+function matchResult(d,it,entity){
+  var t=squash(it.title),a=squash(it.artist),res=(d&&d.results)||[];
+  function nameOf(r){return entity==='song'?(r.trackName||''):String(r.collectionName||'').replace(/\s-\s*(EP|Single|싱글)$/i,'');}
+  function artistOk(r){var ra=squash(r.artistName);return !!ra&&(ra===a||ra.indexOf(a)>-1||a.indexOf(ra)>-1);}
+  for(var pass=0;pass<2;pass++){
+    for(var i=0;i<res.length;i++){
+      var r=res[i],rn=squash(nameOf(r));
+      if(!r.collectionId||!rn||!artistOk(r))continue;
+      if(pass===0?rn===t:(rn.indexOf(t)===0||t.indexOf(rn)===0))return r;
+    }
+  }
+  return null;
+}
+function findPlay(it){
+  var entity=it.type==='song'?'song':'album',term=it.title+' '+it.artist,cts=['KR','US','JP'],i=0;
+  function next(){
+    if(i>=cts.length)return Promise.resolve(null);
+    var c=cts[i++];
+    return itunes(term,entity,c).then(function(d){
+      var m=matchResult(d,it,entity);
+      if(m)return {src:'am',cc:c.toLowerCase(),path:'album/'+m.collectionId+(entity==='song'&&m.trackId?'?i='+m.trackId:'')};
+      return next();
+    },function(){return next();});
+  }
+  return next().catch(function(){return null;});
+}
+function setupPlayer(it){
+  if(it.play){renderPlayer(it,'');return;}
+  if(playTried[it.id]){renderPlayer(it,'miss');return;}
+  renderPlayer(it,'loading');
+  findPlay(it).then(function(p){
+    if(p||!cloudEnabled())return p;
+    renderPlayer(it,'ai');
+    return aiFindPlay(it).catch(function(e){aiErr[it.id]=aiErrText(e);return null;});
+  }).then(function(p){
+    playTried[it.id]=true;
+    var cur=items.find(function(x){return x.id===it.id;});if(!cur)return;
+    if(p){cur.play=sanitizePlay(p);save();}
+    renderPlayer(cur,p?'':'miss');
+  });
+}
+
+/* ---------- AI로 앨범 찾기 (Firebase AI Logic, Gemini) ----------
+   1) AI가 철자·표기를 바로잡은 검색어를 만들고
+   2) 그 검색어로 Apple Music(iTunes)에서 후보를 모은 뒤
+   3) AI가 후보 중 가장 알맞은 앨범을 골라요. AI가 앨범 번호를 지어내지 않도록 실제 검색 결과에서만 고르게 해요. */
+var aiErr={},aiState={p:null};
+function getAIHandle(){
+  if(aiState.p)return aiState.p;
+  var b='https://www.gstatic.com/firebasejs/12.0.0/';
+  aiState.p=Promise.all([
+    import(b+'firebase-app.js'),
+    import(b+'firebase-ai.js'),
+    window.RECAPTCHA_SITE_KEY?import(b+'firebase-app-check.js'):Promise.resolve(null)
+  ]).then(function(m){
+    var app=m[0].initializeApp(window.FIREBASE_CONFIG,'rating-ai');
+    if(m[2])m[2].initializeAppCheck(app,{provider:new m[2].ReCaptchaV3Provider(window.RECAPTCHA_SITE_KEY),isTokenAutoRefreshEnabled:true});
+    return {ai:m[1].getAI(app,{backend:new m[1].GoogleAIBackend()}),mod:m[1]};
+  });
+  aiState.p.catch(function(){aiState.p=null;});
+  return aiState.p;
+}
+function aiModels(){return window.AI_MODEL?[String(window.AI_MODEL)]:['gemini-2.5-flash','gemini-flash-latest','gemini-2.5-flash-lite'];}
+function askAI(prompt){
+  return getAIHandle().then(function(h){
+    var list=aiModels(),i=0,lastErr=null;
+    function next(){
+      if(i>=list.length)return Promise.reject(lastErr||new Error('no model'));
+      var model=h.mod.getGenerativeModel(h.ai,{model:list[i++],generationConfig:{responseMimeType:'application/json',temperature:0.2}});
+      return model.generateContent(prompt).then(function(r){
+        var t=r.response.text();
+        return JSON.parse(String(t).replace(/```json|```/g,'').trim());
+      },function(e){
+        lastErr=e;
+        if(/not[ _-]?found|404|not supported|is not available/i.test(String((e&&e.message)||'')))return next();
+        throw e;
+      });
+    }
+    return next();
+  });
+}
+function aiErrText(e){
+  var m=String((e&&(e.code||'')+' '+(e.message||''))||'');
+  if(/app[-_ ]?check/i.test(m))return 'AI를 쓰려면 Firebase App Check 설정이 필요해요.';
+  if(/api[-_ ]?not[-_ ]?enabled|has not been used|disabled|SERVICE_DISABLED|AI Logic/i.test(m))return 'Firebase에서 AI Logic이 켜져 있지 않아요.';
+  if(/quota|429|resource[-_ ]?exhausted/i.test(m))return 'AI 사용 한도를 넘었어요. 잠시 뒤에 다시 해 주세요.';
+  if(/Failed to fetch|import|network/i.test(m))return 'AI에 연결하지 못했어요. 인터넷 연결을 확인해 주세요.';
+  return 'AI로 찾지 못했어요. ('+m.slice(0,80)+')';
+}
+function aiFindPlay(it){
+  var entity=it.type==='song'?'song':'album',kind=entity==='song'?'노래':'앨범';
+  var info='제목="'+it.title+'", 아티스트="'+it.artist+'", 종류="'+TL[it.type]+'"'+(it.album?', 수록 앨범="'+it.album+'"':'');
+  var p1='너는 음악 카탈로그 전문가다. 사용자가 적은 '+kind+' 정보는 철자, 띄어쓰기, 표기(영문/원어)가 틀렸을 수 있다. '+
+    'Apple Music 검색창에 넣을 검색어를 만들어라. 정보: '+info+'. '+
+    '공식 제목과 공식 아티스트 이름을 함께 넣은 검색어를 우선하고, 일본어·한국어 등 원어 표기와 영문 표기를 모두 고려해라. 아티스트가 불확실하면 제목만 넣은 검색어도 하나 포함해라. '+
+    '설명 없이 JSON으로만 답해라: {"queries":["검색어", ...]} (최대 4개)';
+  return askAI(p1).then(function(r){
+    var qs=((r&&r.queries)||[]).filter(function(q){return typeof q==='string'&&q.trim();}).slice(0,4);
+    if(!qs.length)return null;
+    var jobs=[];
+    qs.forEach(function(q){
+      var stores=/[\u3040-\u30ff\u4e00-\u9faf]/.test(q)?['JP','KR']:['KR','US'];
+      stores.forEach(function(c){
+        jobs.push(itunes(q,entity,c).then(function(d){return {c:c,d:d};},function(){return {c:c,d:null};}));
+      });
+    });
+    return Promise.all(jobs).then(function(res){
+      var pool=[],seen={};
+      res.forEach(function(x){
+        ((x.d&&x.d.results)||[]).forEach(function(r){
+          if(!r.collectionId)return;
+          var k=entity==='song'?r.collectionId+'_'+r.trackId:String(r.collectionId);
+          if(seen[k]||pool.length>=24)return;seen[k]=1;
+          pool.push({cc:x.c.toLowerCase(),cid:r.collectionId,tid:r.trackId,
+            name:entity==='song'?(r.trackName||''):(r.collectionName||''),artist:r.artistName||'',
+            year:(r.releaseDate||'').slice(0,4),album:entity==='song'?(r.collectionName||''):''});
+        });
+      });
+      if(!pool.length)return null;
+      var lines=pool.map(function(c,i){return i+'. '+c.name+' / '+c.artist+(c.album?' / 앨범: '+c.album:'')+(c.year?' ('+c.year+')':'');}).join('\n');
+      var p2='아래는 Apple Music 검색 결과 목록이다. 사용자가 찾는 '+kind+': '+info+'. '+
+        '사용자 표기는 틀렸을 수 있으니 의미상 같은 작품을 골라라. 정규판(오리지널)을 우선하고, 디럭스·리마스터판은 정규판이 없을 때만 골라라. 확실히 맞는 게 없으면 -1. '+
+        '설명 없이 JSON으로만 답해라: {"pick":번호}\n'+lines;
+      return askAI(p2).then(function(r2){
+        var n=Number(r2&&r2.pick);
+        if(isNaN(n)||n<0||n>=pool.length)return null;
+        var c=pool[n];
+        return {src:'am',cc:c.cc,path:'album/'+c.cid+(entity==='song'&&c.tid?'?i='+c.tid:''),by:'ai'};
+      });
+    });
+  });
+}
+
+/* ---------- 작성 / 수정 폼 ---------- */
+function openForm(id){
+  var ex=id?items.find(function(x){return x.id===id;}):null;
+  f=ex?JSON.parse(JSON.stringify(ex)):{type:(ui.type!=='all'?ui.type:'album'),title:'',artist:'',genre:'',album:'',score:7,note:''};
+  fmode=!ex?'search':'manual';cands=[];stype='album';
+    var chips=TYPES.map(function(t){
+    return '<button type="button" class="chip" data-action="ftype" data-v="'+t[0]+'" aria-pressed="'+(f.type===t[0])+'">'+t[1]+'</button>';
+  }).join('');
+  showOverlay(
+    '<div class="sheet"><div class="sheet-top"><button class="ib" data-action="close" aria-label="닫기">'+IC.close+'</button><h2>'+(ex?'레이팅 수정':'새 레이팅')+'</h2><span style="width:24px"></span></div>'+
+    '<div id="modeSeg"></div><div id="searchPanel" hidden></div><div id="manualFields">'+
+    '<div class="field"><span class="lb">종류</span><div class="chips" style="padding-bottom:0" id="ftypes">'+chips+'</div></div>'+
+    '<div class="field"><label for="f-title">제목</label><input class="in-t" id="f-title" data-f="title" value="'+esc(f.title)+'" placeholder="앨범 또는 노래 제목" autocomplete="off"><div id="dupWarn" class="dup" hidden></div></div>'+
+    '<div class="field"><label for="f-artist">아티스트</label><div class="combo"><input class="in-t" id="f-artist" data-f="artist" data-combo="artist" value="'+esc(f.artist)+'" placeholder="직접 입력하거나 목록에서 선택" autocomplete="off"><button type="button" class="combo-btn" data-action="combo-toggle" data-field="artist" aria-label="아티스트 목록 열기">'+CHEV+'</button><div class="combo-list" id="cl-artist" hidden></div></div></div>'+
+    '<div class="field"><label for="f-genre">장르</label><div class="combo"><input class="in-t" id="f-genre" data-f="genre" data-combo="genre" value="'+esc(f.genre)+'" placeholder="직접 입력하거나 목록에서 선택" autocomplete="off"><button type="button" class="combo-btn" data-action="combo-toggle" data-field="genre" aria-label="장르 목록 열기">'+CHEV+'</button><div class="combo-list" id="cl-genre" hidden></div></div><p class="hint">장르를 여러 개 고르려면 / 로 이어 주세요. 예: Soul/R&B</p></div>'+
+    '<div class="field only-song" id="albumField"'+(f.type==='song'?'':' hidden')+'><label for="f-album">수록 앨범 (선택)</label><input class="in-t" id="f-album" data-f="album" value="'+esc(f.album||'')+'" placeholder="노래가 들어 있는 앨범" autocomplete="off"></div>'+
+    '<div class="field"><span class="lb">점수</span><div class="scorebox"><div class="scorerow">'+
+      '<button type="button" class="step" data-action="step" data-v="-0.1" aria-label="0.1 내리기">−</button>'+
+      '<div class="scorenum" id="scoreNum" style="'+scStyle(f.score)+'">'+fmt(f.score)+'</div>'+
+      '<button type="button" class="step" data-action="step" data-v="0.1" aria-label="0.1 올리기">+</button></div>'+
+      '<input type="range" id="scoreRange" min="0" max="10" step="0.1" value="'+f.score+'" aria-label="점수" style="accent-color:'+scoreColor(f.score).bg+'">'+
+      '<div class="scale"><span>0</span><span>5</span><span>10</span></div></div></div>'+
+    '<div class="field"><label for="f-note">메모</label><textarea class="in-t" id="f-note" data-f="note" placeholder="좋았던 점, 인상 깊은 트랙, 들었던 때의 기억 등을 적어 보세요">'+esc(f.note)+'</textarea></div>'+
+    '<div class="savebar"><button class="btn block" data-action="savef">저장하기</button></div></div></div>',
+    'form');
+  renderMode();
+  if(!ex){setTimeout(function(){var t=$(fmode==='search'?'#sq':'#f-title');if(t)t.focus();},250);}
+}
+function renderMode(){
+  var seg=$('#modeSeg'),sp=$('#searchPanel'),mf=$('#manualFields');
+  if(!seg||!f)return;
+  var canSearch=!f.id;
+  if(!canSearch)fmode='manual';
+  seg.innerHTML=canSearch?'<div class="seg two" role="group" aria-label="입력 방식" style="margin-bottom:16px"><button type="button" data-action="fmode" data-v="search" aria-pressed="'+(fmode==='search')+'">검색해서 입력</button><button type="button" data-action="fmode" data-v="manual" aria-pressed="'+(fmode==='manual')+'">직접 입력</button></div>':'';
+  sp.hidden=!(canSearch&&fmode==='search');
+  mf.hidden=(fmode!=='manual');
+  if(canSearch&&!sp.dataset.built){
+    sp.dataset.built='1';
+    sp.innerHTML='<div class="chips" id="stypes" style="padding-bottom:10px" role="group" aria-label="검색 종류"><button type="button" class="chip" data-action="stype" data-v="album" aria-pressed="true">앨범, EP, 싱글</button><button type="button" class="chip" data-action="stype" data-v="song" aria-pressed="false">노래</button></div>'+
+      '<div class="field"><label for="sq">검색어</label><div class="sqrow"><input id="sq" class="in-t" type="search" placeholder="제목이나 아티스트 이름" autocomplete="off" enterkeyhint="search"><button type="button" class="btn" data-action="dosearch">검색</button></div></div>'+
+      '<div id="cands"></div>'+
+      '<p class="hint">Apple Music(iTunes) 검색 결과예요. 선택하면 제목, 아티스트, 장르가 자동으로 입력돼요. ('+VER+')</p>'+
+      '<p style="margin:14px 0 0"><button type="button" class="mini" data-action="fmode" data-v="manual">찾는 게 없어요. 직접 입력할게요</button></p>';
+  }
+}
+function applyType(v){
+  f.type=v;
+  document.querySelectorAll('#ftypes .chip').forEach(function(c){c.setAttribute('aria-pressed',String(c.dataset.v===v));});
+  var af=$('#albumField');if(af)af.hidden=(v!=='song');
+}
+function jsonp(url){
+  return new Promise(function(res,rej){
+    var cb='__it'+Date.now()+Math.floor(Math.random()*1000),sc=document.createElement('script');
+    var t=setTimeout(function(){clean();rej(new Error('timeout'));},10000);
+    function clean(){clearTimeout(t);try{delete window[cb];}catch(e){window[cb]=undefined;}if(sc.parentNode)sc.parentNode.removeChild(sc);}
+    window[cb]=function(d){clean();res(d);};
+    sc.onerror=function(){clean();rej(new Error('net'));};
+    sc.src=url+'&callback='+cb;document.head.appendChild(sc);
+  });
+}
+function itunes(term,entity,country,attr){
+  var url='https://itunes.apple.com/search?limit=25&country='+country+'&entity='+entity+(attr?'&attribute='+attr:'')+'&term='+encodeURIComponent(term);
+  return fetch(url).then(function(r){if(!r.ok)throw new Error('http '+r.status);return r.json();}).then(function(d){if(d&&typeof d==='object')d._via='fetch';return d;}).catch(function(e){return jsonp(url).then(function(d){if(d&&typeof d==='object'){d._via='jsonp';d._why=String((e&&e.message)||e);}return d;});});
+}
+function mapResults(d,entity){
+  var out=[],seen={};
+  ((d&&d.results)||[]).forEach(function(r){
+    var c;
+    if(entity==='album'){
+      if(!r.collectionName)return;
+      var title=r.collectionName,type='album';
+      if(/\s-\s*EP$/i.test(title)){type='ep';title=title.replace(/\s-\s*EP$/i,'');}
+      else if(/\s-\s*(Single|싱글)$/i.test(title)){type='single';title=title.replace(/\s-\s*(Single|싱글)$/i,'');}
+      c={type:type,title:title,artist:r.artistName||'',genre:r.primaryGenreName||'',year:(r.releaseDate||'').slice(0,4),album:''};
+    }else{
+      if(!r.trackName)return;
+      c={type:'song',title:r.trackName,artist:r.artistName||'',genre:r.primaryGenreName||'',year:(r.releaseDate||'').slice(0,4),
+         album:(r.collectionName||'').replace(/\s-\s*(EP|Single|싱글)$/i,'')};
+    }
+    c.cid=r.collectionId||null;c.tid=r.trackId||null;
+    var k=norm(c.title+'|'+c.artist+'|'+c.type);
+    if(seen[k])return;seen[k]=1;out.push(c);
+  });
+  return out;
+}
+function renderCands(){
+  var box=$('#cands');if(!box)return;
+  if(!cands.length){box.innerHTML='<p class="hint">결과가 없어요. 아티스트 이름과 함께 영어로 검색해 보세요. (예: frank ocean blonde) 그래도 없으면 직접 입력해 주세요.</p><p class="hint" style="font-size:13px;word-break:break-all">진단: '+esc(lastInfo||'-')+' ('+VER+')</p>';return;}
+  box.innerHTML=cands.map(function(c,i){
+    var meta=[TL[c.type],c.year,c.genre].filter(Boolean).join(', ');
+    var dd=findDup(c,null);
+    return '<button type="button" class="cand" data-action="pick" data-i="'+i+'">'+(dd?'<span class="s" style="color:var(--danger);font-weight:700">이미 레이팅함 ('+fmt(dd.score)+'점)</span>':'')+'<span class="t">'+esc(c.title)+'</span><span class="s">'+esc(c.artist)+(c.type==='song'&&c.album?', '+esc(c.album):'')+'</span><span class="s">'+esc(meta)+'</span></button>';
+  }).join('');
+}
+function runSearch(){
+  var inp=$('#sq'),q=inp?inp.value.trim():'';
+  if(!q){toast('검색어를 입력해 주세요');return;}
+  if(searching)return;
+  searching=true;cands=[];
+  var box=$('#cands');if(box)box.innerHTML='<p class="hint">찾는 중…</p>';
+  var entity=stype==='song'?'song':'album';
+  var info=[];
+  function cnt(d){return ((d&&d.results&&d.results.length)||0)+'건'+(d&&d._via?' via '+d._via:'')+(d&&d._why?' (fetch 실패: '+d._why+')':'')+(d&&d.errorMessage?' ['+d.errorMessage+']':'');}
+  var variants=[q];
+  var latin=q.split(/\s+/).filter(function(t){return !/[\u3131-\u318E\uAC00-\uD7A3]/.test(t);}).join(' ').trim();
+  if(latin&&latin!==q)variants.push(latin);
+  var qt=norm(variants[variants.length-1]).split(/\s+/);
+  function relevance(c){
+    var hay=norm(c.title+' '+c.artist+' '+(c.album||''));
+    return qt.filter(function(t){return hay.indexOf(t)>-1;}).length;
+  }
+  function hasFull(list){return list.some(function(c){return relevance(c)===qt.length;});}
+  // 한국·미국·일본 스토어를 함께 검색해요 (스토어마다 올라와 있는 앨범이 달라서)
+  function round(term,attr){
+    return Promise.all(['KR','US','JP'].map(function(c){
+      return itunes(term,entity,c,attr).then(function(d){
+        info.push(c+(attr?'/제목':'')+' '+cnt(d));
+        return mapResults(d,entity).map(function(x){x.cc=c.toLowerCase();return x;});
+      },function(){info.push(c+' 오류');return [];});
+    })).then(function(arrs){return [].concat.apply([],arrs);});
+  }
+  var acc=[];
+  round(variants[0]).then(function(r){
+    acc=r;
+    if(!hasFull(acc)&&variants.length>1)return round(variants[1]).then(function(r2){acc=acc.concat(r2);});
+  }).then(function(){
+    if(!hasFull(acc))return round(variants[variants.length-1],entity==='song'?'songTerm':'albumTerm').then(function(r3){acc=acc.concat(r3);});
+  }).then(function(){
+    var seen={},r=[];
+    acc.forEach(function(c){var k=norm(c.title+'|'+c.artist+'|'+c.type);if(seen[k])return;seen[k]=1;r.push(c);});
+    r=r.map(function(c,i){return {c:c,i:i,s:relevance(c)};}).sort(function(a,b){return (b.s-a.s)||(a.i-b.i);}).slice(0,20).map(function(x){return x.c;});
+    cands=r;lastInfo=info.join(', ');renderCands();
+  }).catch(function(err){
+    var b=$('#cands');if(b)b.innerHTML='<p class="hint">검색하지 못했어요. 인터넷 연결을 확인하거나 직접 입력해 주세요.</p><p class="hint" style="font-size:13px;word-break:break-all">진단: '+esc((err&&err.message)||'오류')+' ('+VER+')</p>';
+  }).then(function(){searching=false;});
+}
+function pickCand(i){
+  var c=cands[i];if(!c||!f)return;
+  var dd=findDup(c,null);
+  if(dd){closeOverlay();openDetail(dd.id);toast('이미 레이팅한 앨범이에요');return;}
+  f.title=c.title;f.artist=c.artist;f.genre=c.genre||'';f.album=c.type==='song'?(c.album||''):'';
+  f.play=c.cid?{src:'am',cc:c.cc||'kr',path:'album/'+c.cid+(c.type==='song'&&c.tid?'?i='+c.tid:'')}:null;
+  [['f-title',f.title],['f-artist',f.artist],['f-genre',f.genre],['f-album',f.album]].forEach(function(p){var el=$('#'+p[0]);if(el)el.value=p[1];});
+  applyType(c.type);
+  fmode='manual';renderMode();checkDup();
+  var ov=$('#overlay');if(ov)ov.scrollTop=0;
+  toast('자동으로 입력했어요. 내용을 확인해 주세요');
+}
+function setScore(v){
+  v=Math.max(0,Math.min(10,Math.round(Number(v)*10)/10));
+  f.score=v;
+  var n=$('#scoreNum'),r=$('#scoreRange');
+  if(n){n.textContent=fmt(v);var c=scoreColor(v);n.style.cssText=scStyle(v);}
+  if(r)r.style.accentColor=scoreColor(v).bg;
+  if(r)r.value=v;
+}
+function saveForm(){
+  if(!f.title.trim()){toast('제목을 입력해 주세요');var t=$('#f-title');if(t)t.focus();return;}
+  if(!f.artist.trim()){toast('아티스트를 입력해 주세요');var a=$('#f-artist');if(a)a.focus();return;}
+  var dupe=findDup({title:f.title,artist:f.artist,type:f.type},f.id);
+  if(dupe){toast('이미 레이팅한 앨범이에요 ('+fmt(dupe.score)+'점)');checkDup();return;}
+  if(findTop3Dup(f.title,f.artist,-1)>-1){toast('TOP 3에 있는 앨범은 레이팅하지 않아요');checkDup();return;}
+  var now=Date.now();
+  var old=f.id?items.find(function(x){return x.id===f.id;}):null;
+  var rec={
+    id:f.id||uid(),type:f.type,title:f.title.trim(),artist:f.artist.trim(),genre:(f.genre||'').trim(),
+    album:f.type==='song'?(f.album||'').trim():'',score:f.score,note:(f.note||'').trim(),
+    createdAt:f.createdAt||now,updatedAt:now,
+    order:(old&&old.score===f.score&&old.order!=null)?old.order:null,
+    play:sanitizePlay(f.play)
+  };
+  if(old&&rec.play&&old.play&&JSON.stringify(rec.play)===JSON.stringify(old.play)&&dupBase(old)!==dupBase(rec))rec.play=null;
+  var idx=items.findIndex(function(x){return x.id===rec.id;});
+  var backup=items.slice();
+  if(idx>-1)items[idx]=rec;else items.push(rec);
+  if(!save()){items=backup;return;}
+  var wasEdit=idx>-1;
+  closeOverlay();render();
+  toast(wasEdit?'수정했어요':'저장했어요');
+  openDetail(rec.id);
+}
+
+/* ---------- 백업 / 복원 ---------- */
+function openBackup(){
+  var json=JSON.stringify({v:1,items:items,top3:top3});
+  showOverlay(
+    '<div class="sheet"><div class="sheet-top"><button class="ib" data-action="close" aria-label="닫기">'+IC.close+'</button><h2>백업과 복원</h2><span style="width:24px"></span></div>'+
+    '<p class="hint" style="margin-top:0">레이팅은 이 기기의 브라우저에 저장돼요. 기기를 바꾸거나 앱 아이콘으로 열었을 때 기록이 안 보이면, 아래 내용을 복사해 두었다가 붙여넣어 복원할 수 있어요.</p>'+
+    '<div class="field" style="margin-top:14px"><label for="bk">백업 내용</label><textarea id="bk" class="in-t bk" spellcheck="false">'+esc(json)+'</textarea></div>'+
+    '<div class="actions"><button class="btn ghost" data-action="copy">복사하기</button><button class="btn ghost" data-action="restore" id="restoreBtn">이 내용으로 복원</button></div>'+
+    (dedupeItems(items).length<items.length?'<div class="actions" style="margin-top:10px"><button class="btn ghost" data-action="dedupe" style="grid-column:1/-1">중복된 레이팅 '+(items.length-dedupeItems(items).length)+'개 정리하기</button></div><p class="hint">같은 앨범이 여러 번 있으면 최근에 고친 하나만 남겨요.</p>':'')+
+    '<p class="hint">복원하면 지금 저장된 레이팅이 덮어써져요.</p></div>',
+    'backup');
+}
+function doRestore(){
+  var raw=$('#bk').value.trim(),d;
+  try{d=JSON.parse(raw);}catch(e){toast('백업 내용을 읽을 수 없어요');return;}
+  var arr=Array.isArray(d)?d:(d&&d.items);
+  if(!Array.isArray(arr)){toast('백업 내용을 읽을 수 없어요');return;}
+  var out=sanitizeItems(arr);
+  var t3=(d&&Array.isArray(d.top3))?sanitizeTop3(d.top3):null;
+  var prev=items,prevT=top3;items=out;if(t3)top3=t3;
+  if(!save()){items=prev;top3=prevT;return;}
+  closeOverlay();render();toast(out.length+'개의 레이팅을 복원했어요');
+}
+
+/* ---------- 이벤트 ---------- */
+var armed={};
+function arm(btn,key,armedText,onConfirm){
+  if(armed[key]){clearTimeout(armed[key].t);var orig=armed[key];armed[key]=null;onConfirm();return;}
+  var orig=btn.textContent;
+  btn.textContent=armedText;btn.classList.add('danger');btn.classList.remove('ghost');
+  armed[key]={t:setTimeout(function(){armed[key]=null;btn.textContent=orig;btn.classList.remove('danger');btn.classList.add('ghost');},3500)};
+}
+
+document.addEventListener('click',function(e){
+  if(!e.target.closest('.combo'))hideCombos();
+  var el=e.target.closest('[data-action]');
+  if(!el)return;
+  var a=el.dataset.action,v=el.dataset.v;
+  if(a==='tab'){ui.tab=v;ui.group=null;render();window.scrollTo(0,0);if(v==='search'){var q=$('#q');if(q&&!ui.q)q.focus();}}
+  else if(a==='new'){openForm(null);}
+  else if(a==='type'){ui.type=v;render();}
+  else if(a==='by'){ui.by=v;ui.group=null;render();}
+  else if(a==='group'){ui.group=el.dataset.key;ui.groupName=el.dataset.name;render();window.scrollTo(0,0);}
+  else if(a==='back'){ui.group=null;render();}
+  else if(a==='open'){openDetail(el.dataset.id);}
+  else if(a==='close'){closeOverlay();}
+  else if(a==='edit'){openForm(el.dataset.id);}
+  else if(a==='del'){
+    var id=el.dataset.id;
+    arm(el,'del','정말 삭제할까요? 한 번 더 누르세요',function(){
+      var prev=items;items=items.filter(function(x){return x.id!==id;});
+      if(!save()){items=prev;return;}
+      closeOverlay();render();toast('삭제했어요');
+    });
+  }
+  else if(a==='combo-toggle'){
+    var cb=$('#cl-'+el.dataset.field);
+    if(cb&&!cb.hidden)hideCombos();else showCombo(el.dataset.field,true);
+  }
+  else if(a==='combo-pick'){
+    var fld=el.dataset.field,ci=$('#f-'+fld);
+    var nv=(el.dataset.prefix||'')+el.dataset.val;
+    if(ci){ci.value=nv;}
+    if(f)f[fld]=nv;
+    hideCombos();
+  }
+  else if(a==='t3edit'){openTop3(Number(el.dataset.i));}
+  else if(a==='t3save'){saveTop3();}
+  else if(a==='t3clear'){
+    var si=f?f.slot:null;
+    arm(el,'t3clear','정말 비울까요? 한 번 더 누르세요',function(){
+      if(si==null)return;
+      var prev=top3.slice();top3[si]=null;
+      if(!save()){top3=prev;return;}
+      closeOverlay();render();toast('자리를 비웠어요');
+    });
+  }
+  else if(a==='dedupe'){
+    arm(el,'dedupe','정말 정리할까요? 한 번 더 누르세요',function(){
+      var prev=items;items=dedupeItems(items);
+      if(!save()){items=prev;return;}
+      closeOverlay();render();toast((prev.length-items.length)+'개의 중복을 정리했어요');
+    });
+  }
+  else if(a==='airetry'){
+    var ar=items.find(function(x){return x.id===el.dataset.id;});
+    if(ar){
+      delete aiErr[ar.id];renderPlayer(ar,'ai');
+      aiFindPlay(ar).catch(function(e){aiErr[ar.id]=aiErrText(e);return null;}).then(function(p){
+        var cur=items.find(function(x){return x.id===ar.id;});if(!cur)return;
+        if(p){cur.play=sanitizePlay(p);save();}
+        else if(!aiErr[ar.id])aiErr[ar.id]='AI도 알맞은 앨범을 찾지 못했어요.';
+        renderPlayer(cur,p?'':'miss');
+      });
+    }
+  }
+  else if(a==='plink'){var pc=items.find(function(x){return x.id===el.dataset.id;});if(pc)renderPlayer(pc,'edit');}
+  else if(a==='plinkdel'){
+    var pd=items.find(function(x){return x.id===el.dataset.id;});
+    if(pd){pd.play=null;delete playTried[pd.id];save();setupPlayer(pd);}
+  }
+  else if(a==='plinksave'){
+    var ps=items.find(function(x){return x.id===el.dataset.id;}),pin=$('#plinkIn');
+    var np=parsePlayLink(pin?pin.value:'');
+    if(!np){toast('Apple Music이나 Spotify의 앨범·곡 링크를 넣어 주세요');return;}
+    if(ps){ps.play=np;save();renderPlayer(ps,'');toast('재생 링크를 저장했어요');}
+  }
+  else if(a==='opendup'){closeOverlay();openDetail(el.dataset.id);}
+  else if(a==='ftype'){
+    applyType(v);checkDup();
+  }
+  else if(a==='fmode'){fmode=v;renderMode();setTimeout(function(){var t=$(v==='search'?'#sq':'#f-title');if(t)t.focus();},50);}
+  else if(a==='dosearch'){runSearch();}
+  else if(a==='stype'){stype=v;document.querySelectorAll('#stypes .chip').forEach(function(c){c.setAttribute('aria-pressed',String(c.dataset.v===v));});var q0=$('#sq');if(q0&&q0.value.trim())runSearch();}
+  else if(a==='pick'){pickCand(Number(el.dataset.i));}
+  else if(a==='step'){setScore(f.score+Number(v));}
+  else if(a==='savef'){saveForm();}
+  else if(a==='backup'){openBackup();}
+  else if(a==='account'){showAccount(false);}
+  else if(a==='login'||a==='signup'){accAuth(a);}
+  else if(a==='reset'){accReset();}
+  else if(a==='logout'){
+    if(cloud.auth)cloud.auth.signOut().then(function(){toast('로그아웃했어요. 이 기기의 레이팅은 그대로 남아 있어요');});
+  }
+  else if(a==='syncnow'){
+    if(cloud.ref){cloud.state='saving';refreshAccountUI();cloud.ref.get().then(firstSync).catch(cloudFail);}
+  }
+  else if(a==='keep-cloud'||a==='keep-local'||a==='keep-merge'){resolveConflict(a);}
+  else if(a==='copy'){
+    var ta=$('#bk');
+    ta.focus();ta.select();
+    var ok=false;
+    try{ok=document.execCommand('copy');}catch(err){}
+    if(!ok&&navigator.clipboard){navigator.clipboard.writeText(ta.value).then(function(){toast('복사했어요');},function(){toast('길게 눌러 직접 복사해 주세요');});return;}
+    toast(ok?'복사했어요':'길게 눌러 직접 복사해 주세요');
+  }
+  else if(a==='restore'){
+    arm(el,'restore','정말 덮어쓸까요? 한 번 더 누르세요',doRestore);
+  }
+});
+
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.id==='q'){ui.q=t.value;$('#results').innerHTML=searchResults();return;}
+  if(!f)return;
+  if(t.dataset&&t.dataset.f){f[t.dataset.f]=t.value;if(t.dataset.combo)showCombo(t.dataset.combo,false);if(t.dataset.f==='title'||t.dataset.f==='artist')checkDup();}
+  else if(t.id==='scoreRange'){setScore(t.value);}
+});
+document.addEventListener('focusin',function(e){
+  var t=e.target;
+  if(f&&t&&t.dataset&&t.dataset.combo)showCombo(t.dataset.combo,false);
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'&&document.querySelector('.combo-list:not([hidden])')){hideCombos();return;}
+  if(e.key==='Escape'&&overlayMode&&overlayMode!=='conflict')closeOverlay();
+  if(e.key==='Enter'&&e.target&&e.target.id==='sq'){e.preventDefault();runSearch();}
+});
+
+/* ---------- 로그인과 클라우드 저장 (Firebase) ---------- */
+function cloudEnabled(){return !!(window.FIREBASE_CONFIG&&window.FIREBASE_CONFIG.apiKey&&window.FIREBASE_CONFIG.projectId);}
+function loadScript(src){
+  return new Promise(function(res,rej){
+    var sc=document.createElement('script');sc.src=src;sc.onload=res;
+    sc.onerror=function(){rej(new Error('load'));};document.head.appendChild(sc);
+  });
+}
+function sanitizeItems(arr){
+  var out=[];
+  (arr||[]).forEach(function(x){
+    if(!x||typeof x!=='object'||!x.title)return;
+    var sc=Number(x.score);if(isNaN(sc))sc=0;
+    out.push({
+      id:String(x.id||uid()),type:TL[x.type]?x.type:'album',title:String(x.title),artist:String(x.artist||'알 수 없음'),
+      genre:String(x.genre||''),album:String(x.album||''),score:Math.max(0,Math.min(10,Math.round(sc*10)/10)),
+      note:String(x.note||''),createdAt:Number(x.createdAt)||Date.now(),updatedAt:Number(x.updatedAt)||Date.now(),
+      order:(x.order!=null&&!isNaN(Number(x.order)))?Number(x.order):null,
+      play:sanitizePlay(x.play)
+    });
+  });
+  return dedupeItems(out);
+}
+function parseRemote(str){
+  try{var d=JSON.parse(str);var arr=Array.isArray(d)?d:(d&&d.items);if(!Array.isArray(arr))return null;return {items:sanitizeItems(arr),top3:sanitizeTop3(d&&d.top3)};}catch(e){return null;}
+}
+function readSyncInfo(){try{return JSON.parse(localStorage.getItem('myrating.sync')||'null');}catch(e){return null;}}
+function writeSyncInfo(rev){try{localStorage.setItem('myrating.sync',JSON.stringify({uid:cloud.user&&cloud.user.uid,rev:rev}));}catch(e){}}
+function errText(e){
+  var c=(e&&e.code)||'';
+  if(c==='permission-denied')return '저장 권한이 없어요. Firestore 규칙을 확인해 주세요.';
+  if(c==='unavailable')return '서버에 연결하지 못했어요.';
+  return c||'알 수 없는 오류';
+}
+function authMsg(e){
+  var c=(e&&e.code)||'';
+  if(c==='auth/invalid-email')return '이메일 형식이 올바르지 않아요.';
+  if(c==='auth/missing-password'||c==='auth/weak-password')return '비밀번호는 6자 이상이어야 해요.';
+  if(c==='auth/email-already-in-use')return '이미 가입된 이메일이에요. 로그인해 주세요.';
+  if(c==='auth/user-not-found'||c==='auth/wrong-password'||c==='auth/invalid-credential'||c==='auth/invalid-login-credentials')return '이메일이나 비밀번호가 맞지 않아요.';
+  if(c==='auth/too-many-requests')return '시도가 너무 많아요. 잠시 뒤에 다시 해 주세요.';
+  if(c==='auth/network-request-failed')return '인터넷 연결을 확인해 주세요.';
+  if(c==='auth/operation-not-allowed')return 'Firebase에서 이메일/비밀번호 로그인이 켜져 있지 않아요.';
+  if(c==='auth/missing-email')return '이메일을 입력해 주세요.';
+  return '문제가 생겼어요. ('+(c||'알 수 없음')+')';
+}
+function updateDot(){
+  var d=$('#sdot');if(!d)return;
+  d.hidden=!cloud.user;
+  d.className='sdot s-'+(cloud.user?cloud.state:'off');
+}
+function refreshAccountUI(){
+  updateDot();
+  if(overlayMode==='account')showAccount(true);
+}
+function initCloud(){
+  if(!cloudEnabled())return;
+  var base='https://www.gstatic.com/firebasejs/10.12.2/';
+  loadScript(base+'firebase-app-compat.js')
+    .then(function(){return loadScript(base+'firebase-auth-compat.js');})
+    .then(function(){return loadScript(base+'firebase-firestore-compat.js');})
+    .then(function(){
+      firebase.initializeApp(window.FIREBASE_CONFIG);
+      cloud.auth=firebase.auth();cloud.db=firebase.firestore();cloud.ready=true;
+      cloud.auth.onAuthStateChanged(onAuth);
+      refreshAccountUI();
+    })
+    .catch(function(){cloud.state='offline';refreshAccountUI();});
+  window.addEventListener('online',function(){
+    if(cloud.user&&localStorage.getItem('myrating.dirty')==='1')pushNow();
+  });
+}
+function cloudFail(e){cloud.state=navigator.onLine?'error':'offline';cloud.err=errText(e);refreshAccountUI();}
+function onAuth(user){
+  if(cloud.unsub){cloud.unsub();cloud.unsub=null;}
+  cloud.user=user||null;cloud.conflict=null;
+  if(!user){cloud.state='off';cloud.ref=null;refreshAccountUI();return;}
+  cloud.ref=cloud.db.collection('users').doc(user.uid);
+  cloud.state='saving';refreshAccountUI();
+  cloud.ref.get().then(firstSync).catch(cloudFail);
+}
+function firstSync(snap){
+  var info=readSyncInfo();
+  var dirty=localStorage.getItem('myrating.dirty')==='1'||!info;
+  var seedOnly=localStorage.getItem('myrating.seedOnly')==='1';
+  if(!snap.exists){pushNow().then(listen);return;}
+  var d=snap.data(),remote=parseRemote(d.data);
+  if(!remote){cloud.state='error';cloud.err='클라우드 데이터를 읽을 수 없어요.';refreshAccountUI();return;}
+  var mine=info&&info.uid===cloud.user.uid;
+  if(mine&&info.rev===d.rev){
+    if(localStorage.getItem('myrating.dirty')==='1')pushNow();else{cloud.state='idle';cloud.at=cloud.at||Date.now();refreshAccountUI();}
+    listen();return;
+  }
+  if((items.length===0&&!hasTop3())||seedOnly||(mine&&!dirty)){applyRemote(remote,d.rev);listen();return;}
+  cloud.conflict={remote:remote,rev:d.rev};
+  cloud.state='saving';
+  showOverlay(conflictHTML(remote),'conflict');
+}
+function applyRemote(remote,rev){
+  items=remote.items;top3=remote.top3;
+  try{writeLocal();localStorage.removeItem('myrating.dirty');localStorage.removeItem('myrating.seedOnly');}catch(e){}
+  writeSyncInfo(rev);cloud.lastRev=rev;cloud.state='idle';cloud.at=Date.now();
+  render();refreshAccountUI();
+}
+function pushNow(){
+  if(!cloud.user||!cloud.ref||cloud.conflict)return Promise.resolve();
+  clearTimeout(cloud.timer);
+  var rev=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+  cloud.lastRev=rev;cloud.state='saving';refreshAccountUI();
+  return cloud.ref.set({data:JSON.stringify({v:1,items:items,top3:top3}),rev:rev,updatedAt:Date.now()}).then(function(){
+    writeSyncInfo(rev);
+    if(cloud.lastRev===rev)localStorage.removeItem('myrating.dirty');
+    cloud.state='idle';cloud.at=Date.now();refreshAccountUI();
+  }).catch(cloudFail);
+}
+function schedulePush(){
+  if(!cloud||!cloud.user||!cloud.ref||cloud.conflict)return;
+  clearTimeout(cloud.timer);
+  cloud.state='saving';updateDot();
+  cloud.timer=setTimeout(pushNow,900);
+}
+function listen(){
+  if(!cloud.ref)return;
+  if(cloud.unsub)cloud.unsub();
+  cloud.unsub=cloud.ref.onSnapshot(function(snap){
+    if(snap.metadata.hasPendingWrites||!snap.exists)return;
+    var d=snap.data(),info=readSyncInfo();
+    if(d.rev===cloud.lastRev||(info&&info.rev===d.rev))return;
+    if(localStorage.getItem('myrating.dirty')==='1')return;
+    var remote=parseRemote(d.data);
+    if(remote){applyRemote(remote,d.rev);toast('다른 기기에서 바꾼 내용을 불러왔어요');}
+  },function(){});
+}
+function mergeItems(a,b){
+  var byId={};
+  a.concat(b).forEach(function(it){
+    var cur=byId[it.id];
+    if(!cur||(it.updatedAt||0)>(cur.updatedAt||0))byId[it.id]=it;
+  });
+  var byKey={},out=[];
+  Object.keys(byId).forEach(function(id){
+    var it=byId[id],k=dupKey(it),cur=byKey[k];
+    if(!cur||(it.updatedAt||0)>(cur.updatedAt||0))byKey[k]=it;
+  });
+  Object.keys(byKey).forEach(function(k){out.push(byKey[k]);});
+  return out;
+}
+function conflictHTML(remote){
+  return '<div class="sheet"><div class="sheet-top"><span></span><h2>어느 쪽을 쓸까요?</h2><span></span></div>'+
+    '<p class="hint" style="margin-top:0">이 기기와 클라우드에 서로 다른 레이팅이 있어요.<br>이 기기 '+items.length+'개, 클라우드 '+remote.items.length+'개</p>'+
+    '<div style="display:grid;gap:10px;margin-top:14px">'+
+    '<button class="btn" data-action="keep-merge">둘 다 합치기 (추천)</button>'+
+    '<button class="btn ghost" data-action="keep-cloud">클라우드 내용으로 바꾸기<br><small>이 기기의 내용은 사라져요</small></button>'+
+    '<button class="btn ghost" data-action="keep-local">이 기기 내용으로 덮어쓰기<br><small>클라우드의 내용은 사라져요</small></button></div>'+
+    '<p class="hint">합치면 같은 앨범은 더 최근에 고친 쪽이 남아요.</p></div>';
+}
+function resolveConflict(a){
+  var c=cloud.conflict;if(!c)return;
+  cloud.conflict=null;
+  if(a==='keep-cloud'){applyRemote(c.remote,c.rev);}
+  else if(a==='keep-merge'){
+    items=mergeItems(items,c.remote.items);top3=mergeTop3(top3,c.remote.top3);
+    try{writeLocal();localStorage.setItem('myrating.dirty','1');localStorage.removeItem('myrating.seedOnly');}catch(e){}
+    render();pushNow();
+  }else{pushNow();}
+  listen();
+  closeOverlay();
+  toast('정리했어요');
+}
+function timeStr(t){var d=new Date(t);return (d.getHours()<10?'0':'')+d.getHours()+':'+(d.getMinutes()<10?'0':'')+d.getMinutes();}
+function statusText(){
+  if(cloud.state==='saving')return navigator.onLine?'저장 중…':'오프라인이에요. 연결되면 자동으로 올라가요.';
+  if(cloud.state==='error')return '저장하지 못했어요. '+(cloud.err||'');
+  if(cloud.state==='idle'&&cloud.at)return '클라우드에 저장됨 ('+timeStr(cloud.at)+')';
+  return '동기화 준비됨';
+}
+function accHTML(){
+  var h='<div class="sheet"><div class="sheet-top"><button class="ib" data-action="close" aria-label="닫기">'+IC.close+'</button><h2>계정과 동기화</h2><span style="width:24px"></span></div>';
+  if(!cloudEnabled()){
+    h+='<p>클라우드 저장은 아직 꺼져 있어요.</p><p class="hint">GitHub 저장소의 <b>firebase-config.js</b> 파일에 Firebase 설정값을 붙여넣으면 로그인과 클라우드 저장을 쓸 수 있어요. 그 전까지는 이 기기에만 저장돼요.</p>';
+  }else if(!cloud.ready){
+    h+='<p class="hint">'+(cloud.state==='offline'?'클라우드에 연결하지 못했어요. 인터넷 연결을 확인하고 앱을 다시 열어 주세요.':'불러오는 중…')+'</p>';
+  }else if(!cloud.user){
+    h+='<p class="hint" style="margin-top:0">로그인하면 레이팅이 클라우드에도 저장돼요. 다른 기기에서 같은 계정으로 로그인하면 이어서 볼 수 있어요.</p>'+
+      '<div class="field"><label for="acc-email">이메일</label><input class="in-t" id="acc-email" type="email" inputmode="email" autocomplete="email" autocapitalize="none"></div>'+
+      '<div class="field"><label for="acc-pw">비밀번호 (6자 이상)</label><input class="in-t" id="acc-pw" type="password" autocomplete="current-password"></div>'+
+      '<p class="hint" id="acc-err" style="color:var(--danger);min-height:1.4em;margin:0 0 10px"></p>'+
+      '<div class="actions" style="margin-top:0"><button class="btn" data-action="login">로그인</button><button class="btn ghost" data-action="signup">회원가입</button></div>'+
+      '<p style="margin:16px 0 0"><button type="button" class="mini" data-action="reset">비밀번호 재설정 메일 받기</button></p>';
+  }else{
+    h+='<p class="note" style="white-space:normal;margin-bottom:14px">로그인한 계정<br><b>'+esc(cloud.user.email||'')+'</b></p>'+
+      '<p class="accstat"><i class="s-'+cloud.state+'"></i><span>'+esc(statusText())+'</span></p>'+
+      '<div class="actions"><button class="btn ghost" data-action="syncnow">지금 동기화</button><button class="btn ghost" data-action="logout">로그아웃</button></div>'+
+      '<p class="hint">레이팅을 바꾸면 자동으로 클라우드에 저장돼요. 로그아웃해도 이 기기의 레이팅은 그대로 남아 있어요.</p>';
+  }
+  return h+'</div>';
+}
+function showAccount(keep){
+  var em=$('#acc-email'),pw=$('#acc-pw'),ev=em?em.value:'',pv=pw?pw.value:'';
+  if(keep){
+    var o=$('#overlay');o.innerHTML=accHTML();
+    var e2=$('#acc-email'),p2=$('#acc-pw');if(e2)e2.value=ev;if(p2)p2.value=pv;
+  }else showOverlay(accHTML(),'account');
+}
+function accErr(msg){var e=$('#acc-err');if(e)e.textContent=msg;}
+function accAuth(kind){
+  var em=($('#acc-email')||{}).value||'',pw=($('#acc-pw')||{}).value||'';
+  em=em.trim();
+  if(!em||!pw){accErr('이메일과 비밀번호를 입력해 주세요.');return;}
+  accErr('');
+  var p=kind==='signup'?cloud.auth.createUserWithEmailAndPassword(em,pw):cloud.auth.signInWithEmailAndPassword(em,pw);
+  p.then(function(){toast(kind==='signup'?'가입했어요':'로그인했어요');}).catch(function(e){accErr(authMsg(e));});
+}
+function accReset(){
+  var em=(($('#acc-email')||{}).value||'').trim();
+  if(!em){accErr('재설정 메일을 받을 이메일을 먼저 입력해 주세요.');return;}
+  cloud.auth.sendPasswordResetEmail(em).then(function(){accErr('');toast('재설정 메일을 보냈어요');}).catch(function(e){accErr(authMsg(e));});
+}
+
+/* ---------- TOP 3: 점수로 매길 수 없는 앨범 ---------- */
+function top3HTML(){
+  var h='<section class="t3" aria-label="TOP 3"><h2>TOP 3</h2><p class="sub">점수로 매길 수 없는 앨범</p>';
+  for(var i=0;i<3;i++){
+    var t=top3[i];
+    h+='<button class="t3row'+(t?'':' t3empty')+'" data-action="t3edit" data-i="'+i+'"><span class="t3n">'+(i+1)+'</span><span class="t3m">'+
+      (t?'<span class="t3t">'+esc(t.title)+'</span><span class="t3a">'+esc(t.artist)+(t.genre?', '+esc(t.genre):'')+'</span>'+(t.note?'<span class="t3note">'+esc(t.note)+'</span>':'')
+        :'<span class="t3t">자리가 비어 있어요</span><span class="t3a">눌러서 앨범 추가하기</span>')+'</span></button>';
+  }
+  return h+'</section>';
+}
+function openTop3(i){
+  var t=top3[i];
+  f=t?{title:t.title,artist:t.artist,genre:t.genre,note:t.note,slot:i}:{title:'',artist:'',genre:'',note:'',slot:i};
+  var chev=CHEV;
+  showOverlay(
+    '<div class="sheet"><div class="sheet-top"><button class="ib" data-action="close" aria-label="닫기">'+IC.close+'</button><h2>TOP 3, '+(i+1)+'번 자리</h2><span style="width:24px"></span></div>'+
+    '<p class="hint" style="margin-top:0">점수를 매기지 않고 따로 모셔 두는 앨범이에요.</p>'+
+    '<div class="field"><label for="f-title">앨범 제목</label><input class="in-t" id="f-title" data-f="title" value="'+esc(f.title)+'" placeholder="앨범 제목" autocomplete="off"></div>'+
+    '<div class="field"><label for="f-artist">아티스트</label><div class="combo"><input class="in-t" id="f-artist" data-f="artist" data-combo="artist" value="'+esc(f.artist)+'" placeholder="직접 입력하거나 목록에서 선택" autocomplete="off"><button type="button" class="combo-btn" data-action="combo-toggle" data-field="artist" aria-label="아티스트 목록 열기">'+chev+'</button><div class="combo-list" id="cl-artist" hidden></div></div></div>'+
+    '<div class="field"><label for="f-genre">장르</label><div class="combo"><input class="in-t" id="f-genre" data-f="genre" data-combo="genre" value="'+esc(f.genre)+'" placeholder="직접 입력하거나 목록에서 선택" autocomplete="off"><button type="button" class="combo-btn" data-action="combo-toggle" data-field="genre" aria-label="장르 목록 열기">'+chev+'</button><div class="combo-list" id="cl-genre" hidden></div></div></div>'+
+    '<div class="field"><label for="f-note">이 앨범이 특별한 이유</label><textarea class="in-t" id="f-note" data-f="note" placeholder="한두 줄로 적어 보세요">'+esc(f.note)+'</textarea></div>'+
+    '<div class="savebar"><button class="btn block" data-action="t3save">저장하기</button>'+
+    (t?'<button class="btn ghost block" data-action="t3clear" style="margin-top:10px">이 자리 비우기</button>':'')+'</div></div>',
+    'top3');
+  if(!t)setTimeout(function(){var el=$('#f-title');if(el)el.focus();},250);
+}
+function saveTop3(){
+  if(!f||f.slot==null)return;
+  if(!f.title.trim()){toast('앨범 제목을 입력해 주세요');var el=$('#f-title');if(el)el.focus();return;}
+  var tmp={title:f.title,artist:f.artist||''};
+  var other=findTop3Dup(tmp.title,tmp.artist,f.slot);
+  if(other>-1){toast('TOP 3의 '+(other+1)+'번 자리에 이미 있어요');return;}
+  var b=dupBase(tmp);
+  var rated=items.find(function(x){return dupBase(x)===b;});
+  if(rated){toast('이미 레이팅한 앨범이에요. 레이팅을 지운 뒤 올려 주세요');return;}
+  var prev=top3.slice();
+  top3[f.slot]={title:f.title.trim(),artist:(f.artist||'').trim(),genre:(f.genre||'').trim(),note:(f.note||'').trim(),updatedAt:Date.now()};
+  if(!save()){top3=prev;return;}
+  closeOverlay();render();toast('TOP 3에 올렸어요');
+}
+
+/* ---------- 아티스트·장르: 직접 입력도 되고 목록에서 고를 수도 있어요 ---------- */
+var DEFAULT_GENRES=['Hip-Hop','R&B','Soul','Pop','Rock','Electronic','Jazz','Funk','Indie','Alternative','Folk','Country','Classical','Metal','Heavy Metal','Punk','Reggae','Blues','Gospel','Disco','House','Ambient','Synth-Pop','Art Pop','Psychedelic Pop','Progressive Rock','Grunge','J-Pop','J-Rock','K-Pop','Latin','Soundtrack'];
+function comboSource(field){
+  var cnt={},label={};
+  function add(v){var k=norm(v);if(!k)return;if(!label[k])label[k]=String(v).trim();cnt[k]=(cnt[k]||0)+1;}
+  items.forEach(function(it){
+    if(field==='artist')add(it.artist||'');
+    else splitGenres(it.genre).forEach(add);
+  });
+  if(field==='genre')DEFAULT_GENRES.forEach(function(g){var k=norm(g);if(!label[k]){label[k]=g;cnt[k]=0;}});
+  return Object.keys(label).map(function(k){return {key:k,name:label[k],n:cnt[k]};}).sort(function(a,b){return (b.n-a.n)||a.name.localeCompare(b.name,'ko');});
+}
+function hideCombos(){
+  document.querySelectorAll('.combo-list').forEach(function(b){b.hidden=true;});
+}
+function showCombo(field,all){
+  var inp=$('#f-'+field),box=$('#cl-'+field);
+  if(!inp||!box)return;
+  hideCombos();
+  var val=inp.value,prefix='',token=val;
+  if(field==='genre'){
+    var p=val.lastIndexOf('/');
+    prefix=p>-1?val.slice(0,p+1):'';
+    token=p>-1?val.slice(p+1):val;
+  }
+  var q=norm(token),chosen={};
+  if(field==='genre')splitGenres(prefix).forEach(function(g){chosen[norm(g)]=1;});
+  var list=comboSource(field).filter(function(o){return !chosen[o.key];});
+  if(!all&&q){
+    list=list.filter(function(o){return o.key.indexOf(q)>-1;}).sort(function(a,b){
+      var as=a.key.indexOf(q)===0?0:1,bs=b.key.indexOf(q)===0?0:1;
+      return (as-bs)||(b.n-a.n);
+    });
+  }
+  list=list.slice(0,60);
+  if(!list.length){
+    box.innerHTML='<p class="hint" style="padding:10px 14px;margin:0">일치하는 항목이 없어요. 그대로 입력하면 새로 추가돼요.</p>';
+  }else{
+    box.innerHTML=list.map(function(o){
+      return '<button type="button" class="opt" data-action="combo-pick" data-field="'+field+'" data-val="'+esc(o.name)+'" data-prefix="'+esc(prefix)+'"><span>'+esc(o.name)+'</span>'+(o.n?'<span class="c">'+o.n+'개</span>':'')+'</button>';
+    }).join('');
+  }
+  box.hidden=false;
+}
+
+/* ---------- 같은 점수 안에서 끌어서 순위 바꾸기 ---------- */
+var drag=null;
+function groupRows(){
+  return [].slice.call(document.querySelectorAll('.rowx[data-score="'+drag.score+'"]'));
+}
+function reorderCheck(){
+  if(!drag)return;
+  var rows=groupRows(),me=drag.row,y=drag.y;
+  for(var k=0;k<rows.length;k++){
+    var r=rows[k];if(r===me)continue;
+    var b=r.getBoundingClientRect(),mid=b.top+b.height/2;
+    var above=!!(r.compareDocumentPosition(me)&Node.DOCUMENT_POSITION_FOLLOWING);
+    if(above&&y<mid){r.parentNode.insertBefore(me,r);return;}
+    if(!above&&y>mid){r.parentNode.insertBefore(me,r.nextSibling);return;}
+  }
+}
+function commitOrder(scoreStr,ids){
+  var sc=Number(scoreStr);
+  var gg=sortItems(items.filter(function(i){return i.score===sc;}));
+  var inSet={};ids.forEach(function(id){inSet[id]=1;});
+  var byId={};items.forEach(function(i){byId[i.id]=i;});
+  var seq=gg.slice(),k=0;
+  gg.forEach(function(it,i){if(inSet[it.id]){seq[i]=byId[ids[k++]];}});
+  var snap=gg.map(function(i){return [i,i.order];});
+  seq.forEach(function(it,i){it.order=i;});
+  if(!save()){snap.forEach(function(p){p[0].order=p[1];});}
+}
+function endDrag(commit){
+  if(!drag)return;
+  var d=drag;drag=null;
+  clearInterval(d.tm);
+  document.body.style.userSelect='';
+  d.row.classList.remove('dragging');
+  if(commit){
+    var ids=[].slice.call(document.querySelectorAll('.rowx[data-score="'+d.score+'"]')).map(function(r){return r.dataset.id;});
+    var before=sortItems(items.filter(function(i){return i.score===Number(d.score);})).map(function(i){return i.id;});
+    var changed=ids.some(function(id,i){return id!==before.filter(function(b){return ids.indexOf(b)>-1;})[i];});
+    if(changed){commitOrder(d.score,ids);toast('순위를 바꿨어요');}
+  }
+  render();
+}
+document.addEventListener('pointerdown',function(e){
+  var g=e.target.closest&&e.target.closest('.grip');
+  if(!g||drag)return;
+  var row=g.closest('.rowx');if(!row)return;
+  e.preventDefault();
+  drag={row:row,score:row.dataset.score,pid:e.pointerId,y:e.clientY,g:g};
+  row.classList.add('dragging');
+  try{g.setPointerCapture(e.pointerId);}catch(err){}
+  document.body.style.userSelect='none';
+  drag.tm=setInterval(function(){
+    if(!drag)return;
+    var h=window.innerHeight;
+    if(drag.y<110)window.scrollBy(0,-14);
+    else if(drag.y>h-150)window.scrollBy(0,14);
+    reorderCheck();
+  },30);
+});
+document.addEventListener('pointermove',function(e){
+  if(!drag||e.pointerId!==drag.pid)return;
+  e.preventDefault();
+  drag.y=e.clientY;
+  reorderCheck();
+},{passive:false});
+document.addEventListener('pointerup',function(e){if(drag&&e.pointerId===drag.pid)endDrag(true);});
+document.addEventListener('pointercancel',function(e){if(drag&&e.pointerId===drag.pid)endDrag(false);});
+document.addEventListener('contextmenu',function(e){if(e.target.closest&&e.target.closest('.grip'))e.preventDefault();});
+
+load();
+render();
+window.addEventListener('scroll',function(){var t=$('#top');if(t)t.classList.toggle('scrolled',window.scrollY>4);},{passive:true});
+initCloud();
+
+})();
+</script>
+</body>
+</html>
