@@ -11,4 +11,11 @@
 //   appId: "1:1234567890:web:abcdef"
 // };
 
-window.FIREBASE_CONFIG = null;
+window.FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDhhsVRxq8yCE2SrbxvAmIfC6PTQpkZHD8",
+  authDomain: "ratemusic-99237.firebaseapp.com",
+  projectId: "ratemusic-99237",
+  storageBucket: "ratemusic-99237.firebasestorage.app",
+  messagingSenderId: "128132093223",
+  appId: "1:128132093223:web:8dfd96436a9d77a32f8502"
+};
