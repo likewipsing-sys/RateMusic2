@@ -170,6 +170,9 @@ input[type=range]{width:100%;margin:12px 0 0;accent-color:var(--amber);height:32
 .only-song[hidden]{display:none}
 .player{margin:18px 0 0}
 .pframe{display:block;width:100%;border:0;border-radius:12px;overflow:hidden;background:transparent}
+.diag{list-style:none;padding:0;margin:8px 0 18px}
+.diag li{padding:11px 0;border-bottom:1.5px solid var(--line)}
+.diag li span{display:block;font-size:13px;color:var(--muted);word-break:break-all;margin-top:3px;user-select:text;-webkit-user-select:text}
 .gsugg{margin-top:10px;overflow-x:auto}
 .plinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .plinks a{text-decoration:none;color:var(--ink)}
@@ -540,6 +543,8 @@ function parsePlayLink(u){
   u=String(u||'').trim();
   var m=u.match(/music\.apple\.com\/([a-z]{2})\/(album|song)\/(?:[^\/?#]+\/)?(\d+)(?:[^?#]*)?(?:\?[^#]*?\bi=(\d+))?/i);
   if(m)return sanitizePlay({src:'am',cc:m[1],path:m[2].toLowerCase()+'/'+m[3]+(m[2].toLowerCase()==='album'&&m[4]?'?i='+m[4]:'')});
+  m=u.match(/itunes\.apple\.com\/([a-z]{2})\/album\/(?:[^\/?#]+\/)?id(\d+)/i);
+  if(m)return sanitizePlay({src:'am',cc:m[1],path:'album/'+m[2]});
   m=u.match(/open\.spotify\.com\/(?:intl-[a-z]+\/)?(album|track)\/([A-Za-z0-9]+)/i);
   if(m)return sanitizePlay({src:'sp',path:m[1].toLowerCase()+'/'+m[2]});
   return null;
@@ -615,6 +620,9 @@ function setupPlayer(it){
   renderPlayer(it,'loading');
   findPlay(it).then(function(p){
     if(p)return p;
+    return mbFindPlay(it,null,null,playDiag[it.id]);
+  }).then(function(p){
+    if(p)return p;
     if(!cloudEnabled()){(playDiag[it.id]=playDiag[it.id]||[]).push('AI 설정 없음');return null;}
     renderPlayer(it,'ai');
     return aiFindPlay(it).catch(function(e){aiErr[it.id]=aiErrText(e);return null;});
@@ -624,6 +632,46 @@ function setupPlayer(it){
     if(p){cur.play=sanitizePlay(p);save();}
     renderPlayer(cur,p?'':'miss');
   });
+}
+
+/* ---------- MusicBrainz로 Apple Music / Spotify 주소 찾기 (키 필요 없음, 1초에 1번 규칙) ---------- */
+var mbLast=0;
+function mbGet(path){
+  var wait=Math.max(0,mbLast+1100-Date.now());mbLast=Date.now()+wait;
+  return new Promise(function(r){setTimeout(r,wait);}).then(function(){
+    return fetch('https://musicbrainz.org/ws/2/'+path+(path.indexOf('?')>-1?'&':'?')+'fmt=json',{headers:{'Accept':'application/json'}});
+  }).then(function(r){if(!r.ok)throw new Error('mb '+r.status);return r.json();});
+}
+function mbq(s){return '"'+String(s).replace(/[\\"]/g,'\\$&')+'"';}
+function mbFindPlay(it,title,artist,diag){
+  diag=diag||[];
+  title=title||(it.type==='song'?it.album:it.title);
+  artist=artist||it.artist;
+  if(!title)return Promise.resolve(null);
+  var q='release:'+mbq(title)+(artist?' AND artist:'+mbq(artist):'');
+  return mbGet('release/?limit=15&query='+encodeURIComponent(q)).then(function(d){
+    var t=squash(title);
+    var rels=((d&&d.releases)||[]).filter(function(r){var rt=squash(r.title);return rt===t||rt.indexOf(t)===0;});
+    function pts(r){
+      var digital=(r.media||[]).some(function(m){return /digital/i.test(m.format||'');});
+      return (r.status==='Official'?2:0)+(digital?1.5:0)+((r.score||0)/100);
+    }
+    rels.sort(function(a,b){return pts(b)-pts(a);});
+    rels=rels.slice(0,4);
+    diag.push('MusicBrainz 후보 '+rels.length+'개');
+    var i=0,sp=null;
+    function next(){
+      if(i>=rels.length)return Promise.resolve(sp);
+      return mbGet('release/'+rels[i++].id+'?inc=url-rels').then(function(x){
+        var ps=((x&&x.relations)||[]).map(function(r){return r.url&&r.url.resource?parsePlayLink(r.url.resource):null;}).filter(Boolean);
+        var am=ps.filter(function(p){return p.src==='am';})[0];
+        if(am)return am;
+        if(!sp)sp=ps.filter(function(p){return p.src==='sp';})[0]||null;
+        return next();
+      },function(){return next();});
+    }
+    return next();
+  }).then(function(p){diag.push('MusicBrainz '+(p?'찾음':'못 찾음'));return p;},function(){diag.push('MusicBrainz 오류');return null;});
 }
 
 /* ---------- AI로 앨범 찾기 (Firebase AI Logic, Gemini) ----------
@@ -668,7 +716,7 @@ function callModel(prompt,opts){
       var model=h.mod.getGenerativeModel(h.ai,params);
       return model.generateContent(prompt).then(function(r){
         var cand=((r.response&&r.response.candidates)||[])[0]||{};
-        return {text:String(r.response.text()||''),gm:cand.groundingMetadata||null};
+        return {text:String(r.response.text()||''),gm:cand.groundingMetadata||null,model:params.model};
       },function(e){
         lastErr=e;
         if(/not[ _-]?found|404|not supported|is not available/i.test(String((e&&e.message)||'')))return next();
@@ -716,47 +764,116 @@ function aiErrText(e){
 }
 function aiFindPlay(it){
   var entity=it.type==='song'?'song':'album',kind=entity==='song'?'노래':'앨범';
+  var diag=(playDiag[it.id]=playDiag[it.id]||[]);
   var info='제목="'+it.title+'", 아티스트="'+it.artist+'", 종류="'+TL[it.type]+'"'+(it.album?', 수록 앨범="'+it.album+'"':'');
-  var p1='너는 음악 카탈로그 전문가다. 사용자가 적은 '+kind+' 정보는 철자, 띄어쓰기, 표기(영문/원어)가 틀렸을 수 있다. '+
-    'Apple Music 검색창에 넣을 검색어를 만들어라. 정보: '+info+'. '+
-    '공식 제목과 공식 아티스트 이름을 함께 넣은 검색어를 우선하고, 일본어·한국어 등 원어 표기와 영문 표기를 모두 고려해라. 아티스트가 불확실하면 제목만 넣은 검색어도 하나 포함해라. '+
-    '설명 없이 JSON으로만 답해라: {"queries":["검색어", ...]} (최대 4개)';
+  var p1='너는 음악 카탈로그 전문가다. 사용자가 적은 '+kind+' 정보는 철자, 띄어쓰기, 표기(영문/원어)가 틀렸을 수 있다. 정보: '+info+'. '+
+    '이 작품의 공식 제목과 공식 아티스트 이름(Apple Music이나 MusicBrainz에 등록된 표기)을 알려 주고, Apple Music 검색창에 넣을 검색어도 만들어라. '+
+    '원어 표기(일본어·한국어 등)와 영문 표기를 모두 고려하고, 아티스트가 불확실하면 제목만 넣은 검색어도 포함해라. '+
+    '설명 없이 JSON으로만 답해라: {"title":"공식 제목","artist":"공식 아티스트","album":"노래라면 수록 앨범 공식 제목, 아니면 빈 문자열","queries":["검색어", ...]} (검색어 최대 4개)';
   return askAI(p1).then(function(r){
-    var qs=((r&&r.queries)||[]).filter(function(q){return typeof q==='string'&&q.trim();}).slice(0,4);
-    if(!qs.length)return aiGrounded(it);
-    var jobs=[];
-    qs.forEach(function(q){
-      var stores=/[\u3040-\u30ff\u4e00-\u9faf]/.test(q)?['JP','KR']:['KR','US'];
-      stores.forEach(function(c){
-        jobs.push(itunes(q,entity,c).then(function(d){return {c:c,d:d};},function(){return {c:c,d:null};}));
-      });
-    });
-    return Promise.all(jobs).then(function(res){
-      var pool=[],seen={};
-      res.forEach(function(x){
-        ((x.d&&x.d.results)||[]).forEach(function(r){
-          if(!r.collectionId)return;
-          var k=entity==='song'?r.collectionId+'_'+r.trackId:String(r.collectionId);
-          if(seen[k]||pool.length>=24)return;seen[k]=1;
-          pool.push({cc:x.c.toLowerCase(),cid:r.collectionId,tid:r.trackId,
-            name:entity==='song'?(r.trackName||''):(r.collectionName||''),artist:r.artistName||'',
-            year:(r.releaseDate||'').slice(0,4),album:entity==='song'?(r.collectionName||''):''});
+    var ct=r&&r.title?String(r.title):'',ca=r&&r.artist?String(r.artist):'',calb=r&&r.album?String(r.album):'';
+    if(ct)diag.push('AI 정리: '+ct+' / '+ca);
+    var mbTitle=entity==='song'?(calb||it.album):ct;
+    var pre=mbTitle?mbFindPlay(it,mbTitle,ca||it.artist,diag):Promise.resolve(null);
+    return pre.then(function(found){
+      if(found){found.by='ai';return sanitizePlay(found);}
+      var qs=((r&&r.queries)||[]).filter(function(q){return typeof q==='string'&&q.trim();}).slice(0,4);
+      if(!qs.length)return aiGrounded(it);
+      var jobs=[];
+      qs.forEach(function(q){
+        var stores=/[\u3040-\u30ff\u4e00-\u9faf]/.test(q)?['JP','KR']:['KR','US'];
+        stores.forEach(function(c){
+          jobs.push(itunes(q,entity,c).then(function(d){return {c:c,d:d};},function(){return {c:c,d:null};}));
         });
       });
-      (playDiag[it.id]=playDiag[it.id]||[]).push('AI 검색어 '+qs.length+'개, 후보 '+pool.length+'개');
-      if(!pool.length)return aiGrounded(it);
-      var lines=pool.map(function(c,i){return i+'. '+c.name+' / '+c.artist+(c.album?' / 앨범: '+c.album:'')+(c.year?' ('+c.year+')':'');}).join('\n');
-      var p2='아래는 Apple Music 검색 결과 목록이다. 사용자가 찾는 '+kind+': '+info+'. '+
-        '사용자 표기는 틀렸을 수 있으니 의미상 같은 작품을 골라라. 정규판(오리지널)을 우선하고, 디럭스·리마스터판은 정규판이 없을 때만 골라라. 확실히 맞는 게 없으면 -1. '+
-        '설명 없이 JSON으로만 답해라: {"pick":번호}\n'+lines;
-      return askAI(p2).then(function(r2){
-        var n=Number(r2&&r2.pick);
-        if(isNaN(n)||n<0||n>=pool.length)return aiGrounded(it);
-        var c=pool[n];
-        return {src:'am',cc:c.cc,path:'album/'+c.cid+(entity==='song'&&c.tid?'?i='+c.tid:''),by:'ai'};
+      return Promise.all(jobs).then(function(res){
+        var pool=[],seen={};
+        res.forEach(function(x){
+          ((x.d&&x.d.results)||[]).forEach(function(rr){
+            if(!rr.collectionId)return;
+            var k=entity==='song'?rr.collectionId+'_'+rr.trackId:String(rr.collectionId);
+            if(seen[k]||pool.length>=24)return;seen[k]=1;
+            pool.push({cc:x.c.toLowerCase(),cid:rr.collectionId,tid:rr.trackId,
+              name:entity==='song'?(rr.trackName||''):(rr.collectionName||''),artist:rr.artistName||'',
+              year:(rr.releaseDate||'').slice(0,4),album:entity==='song'?(rr.collectionName||''):''});
+          });
+        });
+        diag.push('AI 검색어 '+qs.length+'개, Apple 후보 '+pool.length+'개');
+        if(!pool.length)return aiGrounded(it);
+        var lines=pool.map(function(c,i){return i+'. '+c.name+' / '+c.artist+(c.album?' / 앨범: '+c.album:'')+(c.year?' ('+c.year+')':'');}).join('\n');
+        var p2='아래는 Apple Music 검색 결과 목록이다. 사용자가 찾는 '+kind+': '+info+'. '+
+          '사용자 표기는 틀렸을 수 있으니 의미상 같은 작품을 골라라. 정규판(오리지널)을 우선하고, 디럭스·리마스터판은 정규판이 없을 때만 골라라. 확실히 맞는 게 없으면 -1. '+
+          '설명 없이 JSON으로만 답해라: {"pick":번호}\n'+lines;
+        return askAI(p2).then(function(r2){
+          var n=Number(r2&&r2.pick);
+          if(isNaN(n)||n<0||n>=pool.length)return aiGrounded(it);
+          var c=pool[n];
+          return {src:'am',cc:c.cc,path:'album/'+c.cid+(entity==='song'&&c.tid?'?i='+c.tid:''),by:'ai'};
+        });
       });
     });
   });
+}
+
+/* ---------- 연결 진단: 설정 → Apple 검색 → AI 모듈 → App Check → Gemini → 구글 검색 순서로 확인 ---------- */
+var diagLines=[];
+function diagSet(i,ok,label,detail){diagLines[i]={ok:ok,label:label,detail:detail||''};renderDiag();}
+function renderDiag(){
+  var el=$('#diagList');if(!el)return;
+  el.innerHTML=diagLines.map(function(l){
+    if(!l)return '';
+    return '<li><b>'+(l.ok===null?'⏳':(l.ok?'✅':'❌'))+' '+esc(l.label)+'</b><span>'+esc(l.detail)+'</span></li>';
+  }).join('');
+}
+function diagText(){
+  return diagLines.filter(Boolean).map(function(l){return (l.ok===null?'[진행중]':(l.ok?'[성공]':'[실패]'))+' '+l.label+': '+l.detail;}).join('\n');
+}
+function fallbackCopy(txt){
+  var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();
+  var ok=false;try{ok=document.execCommand('copy');}catch(e){}
+  document.body.removeChild(ta);toast(ok?'결과를 복사했어요':'길게 눌러 직접 복사해 주세요');
+}
+function errLine(e){return (((e&&e.code)||'')+' '+String((e&&e.message)||e)).trim().slice(0,220);}
+function openDiag(){
+  showOverlay('<div class="sheet"><div class="sheet-top"><button class="ib" data-action="close" aria-label="닫기">'+IC.close+'</button><h2>연결 진단</h2><span style="width:24px"></span></div>'+
+    '<p class="hint" style="margin-top:0">단계별로 차례로 확인해요. 1분쯤 걸릴 수 있어요.</p>'+
+    '<ol class="diag" id="diagList"></ol>'+
+    '<div class="actions"><button class="btn ghost" data-action="diagcopy" style="grid-column:1/-1">결과 복사하기</button></div></div>','diag');
+  runDiag();
+}
+function runDiag(){
+  diagLines=[];
+  var cfg=window.FIREBASE_CONFIG,key=window.RECAPTCHA_ENTERPRISE_KEY?'Enterprise':(window.RECAPTCHA_SITE_KEY?'v3':'없음');
+  diagSet(0,!!(cfg&&cfg.apiKey&&cfg.projectId),'설정 파일',cfg?('프로젝트 '+(cfg.projectId||'?')+', 앱 '+(cfg.appId||'?')+', reCAPTCHA 키 '+key):'firebase-config.js를 읽지 못했어요');
+  diagSet(1,null,'Apple 검색','확인 중…');
+  itunes('igor tyler','album','KR').then(function(d){
+    var n=((d&&d.results)||[]).length;
+    diagSet(1,n>0,'Apple 검색',n+'건 (받은 방식: '+((d&&d._via)||'?')+(d&&d._why?', fetch 실패: '+d._why:'')+(d&&d.errorMessage?', '+d.errorMessage:'')+')');
+  },function(e){diagSet(1,false,'Apple 검색','오류: '+errLine(e));});
+  diagSet(6,null,'MusicBrainz 검색','확인 중…');
+  mbGet('release/?limit=5&query='+encodeURIComponent('release:"IGOR" AND artist:"Tyler, the Creator"')).then(function(d){
+    var n=((d&&d.releases)||[]).length;diagSet(6,n>0,'MusicBrainz 검색',n+'건');
+  },function(e){diagSet(6,false,'MusicBrainz 검색',errLine(e));});
+  if(!cloudEnabled()){diagSet(2,false,'AI','설정 파일이 없어서 건너뛰었어요');return;}
+  diagSet(2,null,'AI 모듈 불러오기','확인 중…');
+  getAIHandle().then(function(h){
+    diagSet(2,true,'AI 모듈 불러오기','성공');
+    if(!h.ac){diagSet(3,false,'App Check 토큰','reCAPTCHA 키가 없어서 App Check를 쓰지 않았어요');return;}
+    diagSet(3,null,'App Check 토큰','확인 중…');
+    return h.acMod.getToken(h.ac,false).then(function(){diagSet(3,true,'App Check 토큰','성공');},function(e){diagSet(3,false,'App Check 토큰',errLine(e));});
+  },function(e){diagSet(2,false,'AI 모듈 불러오기',errLine(e));throw e;})
+  .then(function(){
+    diagSet(4,null,'Gemini 기본 호출','확인 중…');
+    return callModel('"ok"라고만 답해.',{}).then(function(r){
+      diagSet(4,true,'Gemini 기본 호출','모델 '+r.model+', 답: '+r.text.trim().slice(0,40));
+    },function(e){diagSet(4,false,'Gemini 기본 호출',errLine(e));throw e;});
+  }).then(function(){
+    diagSet(5,null,'Gemini 구글 검색','확인 중…');
+    return callModel('Google 검색을 사용해서 Tyler, the Creator의 앨범 IGOR의 Apple Music 페이지 주소를 찾아 주소 하나만 답해라.',{tools:[{googleSearch:{}}]}).then(function(r){
+      var m=r.text.match(/https?:\/\/(?:music\.apple\.com|open\.spotify\.com)\/[^\s)\]"'<>]+/i);
+      diagSet(5,!!m,'Gemini 구글 검색',m?m[0]:('주소를 못 찾음: '+r.text.trim().slice(0,100)));
+    },function(e){diagSet(5,false,'Gemini 구글 검색',errLine(e));});
+  }).catch(function(){});
 }
 
 /* ---------- 작성 / 수정 폼 ---------- */
@@ -1024,6 +1141,12 @@ document.addEventListener('click',function(e){
       if(!save()){items=prev;return;}
       closeOverlay();render();toast((prev.length-items.length)+'개의 중복을 정리했어요');
     });
+  }
+  else if(a==='diag'){openDiag();}
+  else if(a==='diagcopy'){
+    var txt=diagText(),done=function(){toast('결과를 복사했어요');};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){fallbackCopy(txt);});}
+    else fallbackCopy(txt);
   }
   else if(a==='airetry'){
     var ar=items.find(function(x){return x.id===el.dataset.id;});
@@ -1294,7 +1417,7 @@ function accHTML(){
       '<div class="actions"><button class="btn ghost" data-action="syncnow">지금 동기화</button><button class="btn ghost" data-action="logout">로그아웃</button></div>'+
       '<p class="hint">레이팅을 바꾸면 자동으로 클라우드에 저장돼요. 로그아웃해도 이 기기의 레이팅은 그대로 남아 있어요.</p>';
   }
-  return h+'</div>';
+  return h+'<p style="margin:22px 0 0"><button type="button" class="mini" data-action="diag">연결 진단</button></p></div>';
 }
 function showAccount(keep){
   var em=$('#acc-email'),pw=$('#acc-pw'),ev=em?em.value:'',pv=pw?pw.value:'';
