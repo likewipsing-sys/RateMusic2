@@ -15,7 +15,23 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="firebase-config.js"></script>
+<script>
+window.__cfg={state:'loading',err:'',src:''};
+window.addEventListener('error',function(e){if(e&&e.filename&&/firebase-config\.js/.test(e.filename)){window.__cfg.state='syntax';window.__cfg.err=String(e.message||'');}},true);
+</script>
+<script src="firebase-config.js" onload="if(window.__cfg.state==='loading')window.__cfg.state='loaded'" onerror="window.__cfg.state='missing'"></script>
+<script>
+(function(){
+  var c=window.FIREBASE_CONFIG;
+  if(c&&c.apiKey&&c.projectId)window.__cfg.src='file';
+  try{
+    var raw=localStorage.getItem('myrating.fbcfg');if(!raw)return;
+    var d=JSON.parse(raw);
+    if(window.__cfg.src!=='file'&&d&&d.config&&d.config.apiKey&&d.config.projectId){window.FIREBASE_CONFIG=d.config;window.__cfg.src='app';}
+    if(!window.RECAPTCHA_ENTERPRISE_KEY&&!window.RECAPTCHA_SITE_KEY&&d&&d.ek)window.RECAPTCHA_ENTERPRISE_KEY=d.ek;
+  }catch(e){}
+})();
+</script>
 <style>
 :root{
   --bg:#F2F1F8; --surface:#FFFFFF; --ink:#17162B; --muted:#68677F; --line:#BDB9D1;
@@ -230,7 +246,7 @@ var openId=null;
 var top3=[null,null,null];
 var cloud={ready:false,user:null,db:null,auth:null,ref:null,unsub:null,state:'off',at:0,timer:null,lastRev:null,err:'',conflict:null};
 var fmode='manual',cands=[],searching=false,stype='album',lastInfo='';
-var VER='v6';
+var VER='v7';
 
 function load(){
   try{
@@ -582,7 +598,7 @@ function renderPlayer(it,state){
     h='<p class="hint" style="margin:0">재생할 앨범을 자동으로 찾지 못했어요. Apple Music이나 Spotify 링크를 붙여넣어 주세요.</p>'+
       (aiErr[it.id]?'<p class="hint" style="color:var(--danger)">'+esc(aiErr[it.id])+'</p>':'')+
       (playDiag[it.id]&&playDiag[it.id].length?'<p class="hint" style="font-size:12px;word-break:break-all">진단: '+esc(playDiag[it.id].join(', '))+'</p>':'')+
-      (cloudEnabled()?'<p style="margin:10px 0 0"><button type="button" class="mini" data-action="airetry" data-id="'+it.id+'">AI로 다시 찾기</button></p>':'')+
+      '<p style="margin:10px 0 0"><button type="button" class="mini" data-action="airetry" data-id="'+it.id+'">AI로 다시 찾기</button></p>'+
       linkForm(it);
   }
   box.innerHTML=h;
@@ -844,7 +860,7 @@ function openDiag(){
 function runDiag(){
   diagLines=[];
   var cfg=window.FIREBASE_CONFIG,key=window.RECAPTCHA_ENTERPRISE_KEY?'Enterprise':(window.RECAPTCHA_SITE_KEY?'v3':'없음');
-  diagSet(0,!!(cfg&&cfg.apiKey&&cfg.projectId),'설정 파일',cfg?('프로젝트 '+(cfg.projectId||'?')+', 앱 '+(cfg.appId||'?')+', reCAPTCHA 키 '+key):'firebase-config.js를 읽지 못했어요');
+  diagSet(0,cloudEnabled(),'설정',cloudEnabled()?('프로젝트 '+(cfg.projectId||'?')+', 앱 '+(cfg.appId||'?')+', 출처 '+(window.__cfg&&window.__cfg.src==='app'?'앱 안에 저장':'firebase-config.js')+', reCAPTCHA 키 '+key+', 앱 버전 '+VER):cfgReason());
   diagSet(1,null,'Apple 검색','확인 중…');
   itunes('igor tyler','album','KR').then(function(d){
     var n=((d&&d.results)||[]).length;
@@ -1148,8 +1164,22 @@ document.addEventListener('click',function(e){
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){fallbackCopy(txt);});}
     else fallbackCopy(txt);
   }
+  else if(a==='cfgsave'){
+    var cfgO=parseCfgText(($('#cfgText')||{}).value),cfgK=String((($('#cfgKey')||{}).value)||'').trim(),ce=$('#cfgErr');
+    if(!cfgO){if(ce)ce.textContent='설정값을 읽지 못했어요. apiKey, projectId, appId가 들어간 { ... } 부분을 통째로 붙여넣어 주세요.';return;}
+    try{localStorage.setItem('myrating.fbcfg',JSON.stringify({config:cfgO,ek:cfgK}));}catch(err){if(ce)ce.textContent='저장하지 못했어요.';return;}
+    toast('설정을 저장했어요. 앱을 다시 불러올게요');
+    setTimeout(function(){location.reload();},700);
+  }
+  else if(a==='cfgclear'){
+    arm(el,'cfgclear','정말 지울까요? 한 번 더 누르세요',function(){
+      try{localStorage.removeItem('myrating.fbcfg');}catch(err){}
+      toast('설정을 지웠어요');setTimeout(function(){location.reload();},700);
+    });
+  }
   else if(a==='airetry'){
     var ar=items.find(function(x){return x.id===el.dataset.id;});
+    if(ar&&!cloudEnabled()){toast('AI 찾기는 Firebase 설정이 필요해요');showAccount(false);return;}
     if(ar){
       delete aiErr[ar.id];playDiag[ar.id]=[];renderPlayer(ar,'ai');
       aiFindPlay(ar).catch(function(e){aiErr[ar.id]=aiErrText(e);return null;}).then(function(p){
@@ -1224,6 +1254,41 @@ document.addEventListener('keydown',function(e){
 
 /* ---------- 로그인과 클라우드 저장 (Firebase) ---------- */
 function cloudEnabled(){return !!(window.FIREBASE_CONFIG&&window.FIREBASE_CONFIG.apiKey&&window.FIREBASE_CONFIG.projectId);}
+function cfgReason(){
+  var c=window.__cfg||{};
+  if(c.state==='missing')return 'GitHub 저장소에서 firebase-config.js 파일을 찾지 못했어요. 파일 이름과 위치(index.html과 같은 곳)를 확인해 주세요.';
+  if(c.state==='syntax')return 'firebase-config.js에 문법 오류가 있어서 읽지 못했어요. 쉼표, 따옴표, 중괄호를 확인해 주세요. ('+(c.err||'').slice(0,80)+')';
+  if(window.FIREBASE_CONFIG===null)return 'firebase-config.js의 설정값이 비어 있어요(null). 빈 파일로 덮어쓰였을 수 있어요.';
+  if(window.FIREBASE_CONFIG===undefined)return 'firebase-config.js에서 설정값을 찾지 못했어요. window.FIREBASE_CONFIG = { ... }; 형태인지 확인해 주세요.';
+  return '설정값에 apiKey나 projectId가 빠졌어요.';
+}
+function parseCfgText(t){
+  t=String(t||'');
+  var a=t.indexOf('{'),b=t.lastIndexOf('}');
+  if(a<0||b<a)return null;
+  var body=t.slice(a,b+1)
+    .replace(/\/\*[\s\S]*?\*\//g,'')
+    .replace(/(^|[^:"'])\/\/[^\n]*/g,'$1')
+    .replace(/[“”]/g,'"').replace(/[‘’]/g,"'")
+    .replace(/'([^'\\]*)'/g,'"$1"')
+    .replace(/([{,]\s*)([A-Za-z_$][\w$]*)\s*:/g,'$1"$2":')
+    .replace(/,\s*}/g,'}');
+  var o;try{o=JSON.parse(body);}catch(e){return null;}
+  if(!o||typeof o!=='object'||!o.apiKey||!o.projectId||!o.appId)return null;
+  var out={};
+  ['apiKey','authDomain','projectId','storageBucket','messagingSenderId','appId','measurementId'].forEach(function(k){if(o[k])out[k]=String(o[k]).trim();});
+  return out;
+}
+function cfgFormHTML(){
+  var cur={};try{cur=JSON.parse(localStorage.getItem('myrating.fbcfg')||'{}')||{};}catch(e){}
+  return '<div class="field" style="margin-top:14px"><label for="cfgText">Firebase 설정값</label>'+
+    '<textarea id="cfgText" class="in-t bk" spellcheck="false" autocapitalize="none" placeholder="Firebase 콘솔의 firebaseConfig = { ... } 부분을 통째로 붙여넣기"></textarea></div>'+
+    '<div class="field"><label for="cfgKey">reCAPTCHA Enterprise 키 (AI 찾기용, 선택)</label>'+
+    '<input id="cfgKey" class="in-t" autocomplete="off" autocapitalize="none" spellcheck="false" value="'+esc(cur.ek||window.RECAPTCHA_ENTERPRISE_KEY||'')+'"></div>'+
+    '<p class="hint" id="cfgErr" style="color:var(--danger);min-height:1.2em;margin:0 0 8px"></p>'+
+    '<button class="btn block" data-action="cfgsave">이 설정으로 켜기</button>'+
+    '<p class="hint">이 기기의 이 앱에만 저장돼요. 홈 화면 앱과 Safari는 따로라서, 쓰는 쪽에서 붙여넣어 주세요. 설정값은 공개돼도 괜찮은 값이에요.</p>';
+}
 function loadScript(src){
   return new Promise(function(res,rej){
     var sc=document.createElement('script');sc.src=src;sc.onload=res;
@@ -1401,7 +1466,9 @@ function statusText(){
 function accHTML(){
   var h='<div class="sheet"><div class="sheet-top"><button class="ib" data-action="close" aria-label="닫기">'+IC.close+'</button><h2>계정과 동기화</h2><span style="width:24px"></span></div>';
   if(!cloudEnabled()){
-    h+='<p>클라우드 저장은 아직 꺼져 있어요.</p><p class="hint">GitHub 저장소의 <b>firebase-config.js</b> 파일에 Firebase 설정값을 붙여넣으면 로그인과 클라우드 저장을 쓸 수 있어요. 그 전까지는 이 기기에만 저장돼요.</p>';
+    h+='<p style="margin-top:0">로그인과 AI 찾기가 꺼져 있어요.</p>'+
+      '<p class="dup" style="margin:0 0 6px">'+esc(cfgReason())+'</p>'+
+      '<p class="hint">GitHub의 firebase-config.js를 고치거나, 아래에 설정값을 바로 붙여넣으면 켜져요.</p>'+cfgFormHTML();
   }else if(!cloud.ready){
     h+='<p class="hint">'+(cloud.state==='offline'?'클라우드에 연결하지 못했어요. 인터넷 연결을 확인하고 앱을 다시 열어 주세요.':'불러오는 중…')+'</p>';
   }else if(!cloud.user){
@@ -1417,7 +1484,8 @@ function accHTML(){
       '<div class="actions"><button class="btn ghost" data-action="syncnow">지금 동기화</button><button class="btn ghost" data-action="logout">로그아웃</button></div>'+
       '<p class="hint">레이팅을 바꾸면 자동으로 클라우드에 저장돼요. 로그아웃해도 이 기기의 레이팅은 그대로 남아 있어요.</p>';
   }
-  return h+'<p style="margin:22px 0 0"><button type="button" class="mini" data-action="diag">연결 진단</button></p></div>';
+  if(cloudEnabled()&&window.__cfg&&window.__cfg.src==='app')h+='<p class="hint" style="margin-top:22px">앱 안에 저장한 설정을 쓰고 있어요. <button type="button" class="linkbtn" data-action="cfgclear">설정 지우기</button></p>';
+  return h+'<p style="margin:22px 0 0"><button type="button" class="mini" data-action="diag">연결 진단</button></p><p class="hint" style="font-size:12px">앱 버전 '+VER+'</p></div>';
 }
 function showAccount(keep){
   var em=$('#acc-email'),pw=$('#acc-pw'),ev=em?em.value:'',pv=pw?pw.value:'';
